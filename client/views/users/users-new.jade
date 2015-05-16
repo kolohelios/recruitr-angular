@@ -1,1 +1,22 @@
 h3 NEW USER
+
+.row
+  .col-xs-4.col-xs-offset-1
+    form(name='userForm', novalidate)
+      .form-group
+        label: h6(for='firstName') First Name
+        input.form-control.login#firstName(type='text', name='firstName', ng-model='user.firstName')
+      .form-group
+        label: h6(for='lastName') Last Name
+        input.form-control.login#lastName(type='text', name='lastName', ng-model='user.lastName')
+      .form-group
+        label: h6(for='company') Company
+        input.form-control.login#company(type='text', name='company', ng-model='user.company')
+      .form-group
+        label: h6(for='email') Email
+        input.form-control.login#email(type='email', name='email', ng-model='user.email')
+.row
+  .col-xs-4.col-xs-offset-1
+      .form-group
+        button.btn.btn-success.login#createUser(ng-click='create(user)') Create New User
+

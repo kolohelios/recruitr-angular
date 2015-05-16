@@ -4,11 +4,13 @@ h3 {{name | uppercase}}
   .col-xs-4.col-xs-offset-1
     form(name='userForm', novalidate)
       .form-group
-        label: h5(for='email') Email
+        label: h6(for='email') Email
         input.form-control.login#email(type='email', name='email', ng-model='user.email')
       .form-group
-        label: h5(for='password') Password
+        label: h6(for='password') Password
         input.form-control.login#password(type='password', name='password', ng-model='user.password')
+.row
+  .col-xs-4.col-xs-offset-1
       .form-group
-        button.btn.btn-success.login(ng-click='submit(user)') Sign in with Email
+        button.btn.btn-success.login#createUser(ng-click='submit(user)') Sign in with Email
   .col-xs-8
