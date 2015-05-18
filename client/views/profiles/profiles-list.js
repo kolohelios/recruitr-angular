@@ -44,10 +44,8 @@ angular.module('recruitr')
   });
 
   $scope.editStudent = function(student){
-    Profile.editStudent(student)
-    .then(function(response){
-      $scope.students = response.data.students;
-    });
+    console.log(student);
+    $state.go('profiles.edit', {studentId: student});
   };
   $scope.deleteStudent = function(student){
     Profile.deleteStudent(student)

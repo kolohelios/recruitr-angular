@@ -39,7 +39,7 @@ h3 LIST PROFILES
             td: ul 
               li(ng-repeat='skill in student.skills') {{skill}}
             td {{student.location}}
-            td(ng-if='activeUser.role===10'): button.btn.btn-warning(ng-click='editStudent(student)') Edit
+            td(ng-if='activeUser.role===10'): button.btn.btn-warning: a(ui-sref='profiles.edit({studentId: student._id})') Edit
             td(ng-if='activeUser.role===10'): button.btn.btn-danger(ng-click='deleteStudent(student)') Delete
 .row
   .col-xs-1
