@@ -2,7 +2,7 @@
 
 angular.module('recruitr')
 .controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state){
-  
+
   Profile.find(1)
   .then(function(response){
     $scope.students = response.data.profiles;
@@ -14,32 +14,35 @@ angular.module('recruitr')
 
   $scope.moveBack = false;
   $scope.moveForward = false;
+
   $scope.changePage = function(change){
-    if(change === 'next' && $scope.students.length === 10){
+    if(change === 'next' && $scope.users.length === 10){
       $scope.page += 1;
       $scope.moveBack = true;
-      Profile.find($scope.page)
-      .then(function(response){
-        $scope.students = response.data.profiles;
-      });
     } else if(change === 'prev' && $scope.page !== 1){
       $scope.page -= 1;
       $scope.moveForward = true;
-      Profile.find($scope.page)
-      .then(function(response){
-        $scope.students = response.data.profiles;
-      });
-  }
-  Profile.find($scope.page)
+    }
+    Profile.find($scope.page)
+    .then(function(response){
+      $scope.users = response.data.profile;
+    });
+    if($scope.page === 1){
+      $scope.moveBack = false;
+    } else if($scope.users.length < 10){
+      $scope.moveForward = false;
+    }
+  };
+
+  Profile.find()
   .then(function(response){
-    $scope.users = response.data.profile;
+    $scope.students = response.data.profiles;
+    $rootScope.searchResults = response.data.profiles;
+    if($scope.students.length === 10){
+      $scope.moveForward = true;
+    }
   });
-  if($scope.page === 1){
-    $scope.moveBack = false;
-  } else if($scope.students.length < 10){
-    $scope.moveForward = false;
-  }
-};
+
   $scope.editStudent = function(student){
     Profile.editStudent(student)
     .then(function(response){
@@ -58,7 +61,8 @@ angular.module('recruitr')
   $scope.sortBySkills = function(skill){
     Profile.sortsortBySkills(skill);
   };
-  $scope.profileGo = function(student){
-    $state.go('profiles.show', {studentId: student._id});
+  $scope.profileGo = function(index){
+    console.log('inside profile list js - index', index);
+    $state.go('profiles.show', {studentId: index});
   };
 });
