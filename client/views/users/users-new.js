@@ -4,7 +4,6 @@ angular.module('recruitr')
 .controller('UsersNewCtrl', function($scope, User, $state, $window){
   console.log('in UsersNewCtrl');
   $scope.isEdit = false;
-  console.log($state.params);
 
   function checkState(){
     if($state.params.userId){

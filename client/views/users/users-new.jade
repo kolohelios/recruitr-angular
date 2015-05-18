@@ -1,6 +1,7 @@
 h3(ng-hide='isEdit') NEW USER
 h3(ng-show='isEdit') EDIT USER
 
+
 .row
   .col-xs-12
     form(name='userForm', novalidate)
@@ -21,7 +22,7 @@ h3(ng-show='isEdit') EDIT USER
       //- .form-group
       //-   label: h6(for='position') Company Position
       //-   input.form-control.login#position(type='text', name='position', ng-model='user.position' placeholder='Recruiter, CTO, ect')
-      .form-group
+      .form-group(ng-if='activeUser.role === 10 && isEdit')
         label: h6(for='type') User Access Type
         select.form-control.login#type(name='type', ng-model='user.role')
           option(value='0' selected) Viewer

@@ -5,18 +5,20 @@ h3 LIST USERS
       table.table.table-striped.table-hover
         thead
           tr
-            th Name
-            th Company
-            th Email
-            th User Type
+            th(ng-click='sort("firstName")') Name
+            th(ng-click='sort("company")') Company
+            th(ng-click='sort("email")') Email
+            th(ng-click='sort("role")') User Type
+            th(ng-click='sort("createdAt")') User Creation Date
             th(ng-if='activeUser.role === 10') Edit
             th(ng-if='activeUser.role === 10') Delete
         tbody
-          tr(ng-repeat='user in users')
+          tr(ng-repeat='user in users | orderBy : sortColumn : sortReverse')
             td {{user.firstName}} {{user.lastName}}
             td {{user.company || 'none provided'}}
             td {{user.email}}
             td {{user.role}}
+            td {{user.createdAt | date:'dd-MMM-yyyy'}}
             td(ng-if='activeUser.role === 10'): button.btn.btn-sm.btn-warning(ng-click='editUser(user)') Edit
             td(ng-if='activeUser.role === 10 && activeUser._id !== user._id'): button.btn.btn-sm.btn-danger(ng-click='deleteUser(user)') Delete
             td(ng-if='activeUser.role === 10 && activeUser._id === user._id'): button.btn.btn-sm(disabled='disabled') Delete

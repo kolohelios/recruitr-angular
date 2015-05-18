@@ -52,7 +52,8 @@ angular.module('recruitr')
         education: $scope.student.education,
         contact: {
           email: $scope.student.email,
-          phone: $scope.student.phone
+          phone: $scope.student.phone,
+          website: $scope.student.website
         },
         social: {
           github: $scope.student.github,
