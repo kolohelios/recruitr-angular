@@ -7,7 +7,7 @@ h3 LIST PROFILES
   .col-xs-12.col-sm-2
     .form-group
       label(for='sortBySkills') &nbsp;
-      button.form-control.btn.btn-info(name='sortBySkills', ng-click='sortBySkills(sortSkills)') Find
+      button.form-control.btn.btn-info(name='sortBySkills', ng-click='sortBySkills(sortSkills)') Search
   .col-xs-12.col-sm-2
     .form-group(ng-if='activeUser.role > 0')
       label(for='sortName') Find by name
@@ -17,7 +17,7 @@ h3 LIST PROFILES
   .col-xs-12.col-sm-2
     .form-group(ng-if='activeUser.role > 0')
       label(for='sortByName') &nbsp;
-      button.form-control.btn.btn-info(name='sortByName', ng-click='sortByName(sortName)') Find
+      button.form-control.btn.btn-info(name='sortByName', ng-click='sortByName(sortName)') Sort
 .row
   .col-sm-12
     .table-responsive
@@ -43,7 +43,7 @@ h3 LIST PROFILES
             td(ng-if='activeUser.role===10'): button.btn.btn-danger(ng-click='deleteStudent(student)') Delete
 .row
   .col-xs-1
-    button.btn.btn-info(ng-show='moveBack', ng-click='changePage(prev)', ng-model='prev') Prev
+    button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev') Prev
   .col-xs-10
   .col-xs-1
-    button.btn.btn-info(ng-show='moveForward', ng-click='changePage(next)', ng-model='next') Next
+    button.btn.btn-info(ng-show='moveForward', ng-click='changePage("next")', ng-model='next') Next
