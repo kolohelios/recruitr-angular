@@ -30,7 +30,8 @@ h3(ng-show='isEdit') EDIT USER
           option(value='10') Admin
   .col-xs-12.col-sm-4
       .form-group
-        label: h6(for='password1') Password
+        label(ng-hide='isEdit'): h6(for='password1') Password
+        label(ng-show='isEdit'): h6(for='password1') Change Password
         input.form-control.login#password1(type='password', name='password1', ng-model='user.password1')
       .form-group
         label: h6(for='password2') Password Validation

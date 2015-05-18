@@ -62,8 +62,6 @@ angular.module('recruitr')
     });
   };
   $scope.sort = function(column){
-
-    console.log('column', column, 'sortColumn', $scope.sortColumn, 'sortReverse', $scope.sortReverse);
     if($scope.sortColumn === column){
       $scope.sortReverse = !$scope.sortReverse;
     }
