@@ -32,7 +32,7 @@ h3 LIST PROFILES
             th(ng-if='activeUser.role===10') Edit
             th(ng-if='activeUser.role===10') Delete
         tbody
-          tr(ng-repeat='student in students', ng-click='profileGo(student)')
+          tr(ng-repeat='student in students track by $index', ng-click='profileGo($index)')
             td: img.photo(ng-src='{{student.photo}}')
             td {{student.firstName}}
             td(ng-if='activeUser.role > 0') {{student.lastName}}

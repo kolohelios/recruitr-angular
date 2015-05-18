@@ -23,7 +23,7 @@ angular.module('recruitr')
     return $http.get(nodeUrl + '/users');
   };
   User.findOne = function(userId){
-    return $http.get(nodeUrl + '/users/' + userId)
+    return $http.get(nodeUrl + '/users/' + userId);
   };
   User.deleteUser = function(user){
     return $http.delete(nodeUrl + '/users/' + user._id);
