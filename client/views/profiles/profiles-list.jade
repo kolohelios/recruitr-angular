@@ -2,22 +2,22 @@ h3 LIST PROFILES
 .row
   .col-xs-12.col-sm-2
     .form-group
-      label(for='sortSkills') Sort by skills
+      label(for='sortSkills') Find by skills
       input.form-control(type='text' name='sortSkills')
   .col-xs-12.col-sm-2
     .form-group
       label(for='sortBySkills') &nbsp;
-      button.form-control.btn.btn-info(name='sortBySkills', ng-click='sortBySkills(sortSkills)') Sort
+      button.form-control.btn.btn-info(name='sortBySkills', ng-click='sortBySkills(sortSkills)') Find
   .col-xs-12.col-sm-2
     .form-group(ng-if='activeUser.role > 0')
-      label(for='sortName') Sort by name
+      label(for='sortName') Find by name
       select.form-control(ng-model='sortName', name='sortName')
         option(value='firstName') firstName
         option(value='lastName') lastName
   .col-xs-12.col-sm-2
     .form-group(ng-if='activeUser.role > 0')
       label(for='sortByName') &nbsp;
-      button.form-control.btn.btn-info(name='sortByName', ng-click='sortByName(sortName)') Sort
+      button.form-control.btn.btn-info(name='sortByName', ng-click='sortByName(sortName)') Find
 .row
   .col-sm-12
     .table-responsive
