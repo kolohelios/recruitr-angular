@@ -4,34 +4,34 @@ h3 NEW PROFILE
     h4: i.fa.fa-user-plus &nbsp; BASIC INFO
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='firstName') First Name
+      label: h6(for='firstName', tabindex='1') First Name
       input.form-control#firstName(type='text', ng-model='student.firstName')
     .form-group
-      label: h6(for='lastName') Last Name 
-      input.form-control#lastName(type='text', ng-model='student.lastName')
+      label: h6(for='phone', tabindex='4') Phone
+      input.form-control#phone(type='tel', ng-model='student.contact.phone')
     .form-group
       label: h6(for='website') Website
-      input.form-control#website(type='url', ng-model='student.website')
+      input.form-control#website(type='url', ng-model='student.contact.website')
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='phone') Phone
-      input.form-control#phone(type='tel', ng-model='student.phone')
+      label: h6(for='lastName', tabindex=2) Last Name 
+      input.form-control#lastName(type='text', ng-model='student.lastName')
     .form-group
-      label: h6(for='github') GitHub
-      input.form-control#github(type='url', ng-model='student.github')
+      label: h6(for='github', tabindex='5') GitHub
+      input.form-control#github(type='url', ng-model='student.social.github')
     .form-group
       label: h6(for='stackoverflow') StackOverflow
-      input.form-control#stackoverflow(type='url', ng-model='student.stackoverflow')
+      input.form-control#stackoverflow(type='url', ng-model='student.social.stackoverflow')
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='linkedin') LinkedIn
-      input.form-control#linkedin(type='url', ng-model='student.linkedin')
+      label: h6(for='linkedin', tabindex='3') LinkedIn
+      input.form-control#linkedin(type='url', ng-model='student.social.linkedIn')
     .form-group
-      label: h6(for='twitter') Twitter
-      input.form-control#github(type='url', ng-model='student.twitter')
+      label: h6(for='twitter', tabindex='6') Twitter
+      input.form-control#github(type='url', ng-model='student.social.twitter')
     .form-group
       label: h6(for='email') Email
-      input.form-control#email(type='email', ng-model='student.email')
+      input.form-control#email(type='email', ng-model='student.contact.email')
 .row
   .col-xs-12
     h4: i.fa.fa-map-marker &nbsp; LOCATION PREFERENCES
@@ -40,33 +40,44 @@ h3 NEW PROFILE
       label: h6(for='location') Location
       input.form-control#location(type='text', ng-model='student.location')
     .form-group
-      label: h6(for='preferedLocation1') First Preferred Location
-      select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation1')
+      h6 Preferred Locations
+      ul
+        li(ng-repeat='location in student.locationPref') {{location}}
+    .form-group
+      label: h6(for='preflocation') Add Preferred Location
+      select.form-control#location(ng-model='newPreferredLocation')
         option(ng-repeat='place in msa' value='{{place}}') {{place}}
     .form-group
-      label: h6(for='preferedLocation2') Second Preferred Location
-      select.form-control#preferedLocation2(ng-model='student.preferedLocation.preferedLocation2')
-        option(ng-repeat='place in msa', value='{{place}}') {{place}}
-    .form-group
-      label: h6(for='preferedLocation3') Third Perferred Location
-      select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation3')
-        option(ng-repeat='place in msa') {{place}}
+      button.form-control.btn.btn-success(ng-click='addPreferredLocation(newPreferredLocation)') Add Preferred Location
+    
+    //- .form-group
+    //-   label: h6(for='preferedLocation1') First Preferred Location
+    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation1')
+    //-     option(ng-repeat='place in msa' value='{{place}}') {{place}}
+    //- .form-group
+    //-   label: h6(for='preferedLocation2') Second Preferred Location
+    //-   select.form-control#preferedLocation2(ng-model='student.preferedLocation.preferedLocation2')
+    //-     option(ng-repeat='place in msa', value='{{place}}') {{place}}
+    //- .form-group
+    //-   label: h6(for='preferedLocation3') Third Perferred Location
+    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation3')
+    //-     option(ng-repeat='place in msa') {{place}}
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='relocation') Willing to relocate?
-      input.form-control#relocation(type='checkbox', ng-model='student.relocation')
+      input.form-control#relocation(type='checkbox', ng-model='student.relocate')
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='remoteWorking') Willing to work remotely?
-      input.form-control#remoteWorking(type='checkbox', ng-model='student.remoteWorking')
+      input.form-control#remoteWorking(type='checkbox', ng-model='student.remote')
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='forHire') Available for hire?
-      input.form-control#forHire(type='checkbox', ng-model='student.forHire')
+      input.form-control#forHire(type='checkbox', ng-model='student.available')
   .col-xs-12.col-sm-6
     .form-group Three sentences that sum you up
-      label: h6(for='blurb')
-      textarea.form-control#remoteWorking(type='textarea', ng-model='student.blurb')
+      label: h6(for='bio')
+      textarea.form-control#bio(type='textarea', name='bio', ng-model='student.bio')
     .form-group Photo
       label: h6(for='photo')
       input.form-control#photo(type='file', ng-model='student.photo' base-sixty-four-input)
@@ -75,23 +86,10 @@ h3 NEW PROFILE
 .row
   .col-xs-12
     h4: i.fa.fa-bicycle &nbsp; HOBBIES AND INTERESTS
-  .col-xs-12.col-sm-6
+  .col-xs-12
     .form-group
-      label: h6(for='interests1') Hobby/Interest
-      input.form-control#interests1(type='text', ng-model='student.interests.interest1')
-    .form-group
-      label: h6(for='interests2') Hobby/Interest
-      input.form-control#interests2(type='text', ng-model='student.interests.interest2')
-    .form-group
-      label: h6(for='interests3') Hobby/Interest
-      input.form-control#interests3(type='text', ng-model='student.interests.interest3')
-  .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='interests4') Hobby/Interest
-      input.form-control#interests4(type='text', ng-model='student.interests.interest4')
-    .form-group
-      label: h6(for='interests5') Hobby/Interest
-      input.form-control#interests5(type='text', ng-model='student.interests.interest5')
+      label: h6(for='interests') Hobbies/Interests
+      textarea.form-control#interests(name='interests', ng-model='student.interests')
 .row
   .col-xs-12
     h4: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
