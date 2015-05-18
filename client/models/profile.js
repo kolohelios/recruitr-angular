@@ -4,8 +4,8 @@ angular.module('recruitr')
 .factory('Profile', function($rootScope, $http, nodeUrl){
   function Profile(){
   }
-  Profile.find = function(){
-    return $http.get(nodeUrl + '/profiles?page=1');
+  Profile.find = function(page){
+    return $http.get(nodeUrl + '/profiles?page=' + page);
   };
   Profile.save = function(student){
     return $http.post(nodeUrl + '/profiles', student);

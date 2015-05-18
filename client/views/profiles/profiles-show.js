@@ -7,7 +7,6 @@ angular.module('recruitr')
   Profile.findStudent(studentId)
   .then(function(response){
     $scope.student = response.data;
-    console.log($scope.student.photo.base64);
   });
 
   $scope.editStudent = function(student){
