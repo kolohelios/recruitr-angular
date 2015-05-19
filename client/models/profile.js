@@ -5,6 +5,7 @@ angular.module('recruitr')
   function Profile(){
   }
   Profile.find = function(page){
+    console.log(page);
     return $http.get(nodeUrl + '/profiles?page=' + page);
   };
   Profile.save = function(student){

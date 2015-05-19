@@ -49,11 +49,11 @@ h3 NEW PROFILE
     .form-group
       label: h6(for='preflocation') Add Preferred Location
       ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
-        ui-select-match(placeholder='Location', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null") {{$select.selected.name}}
+        ui-select-match(placeholder='Add Preferred Location', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null") {{$select.selected.name}}
         ui-select-choices(repeat='place in msa | filter: $select.search')
           div(ng-bind-html='place.name | highlight: $select.search') 
     .form-group
-      button.form-control.btn.btn-success(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
+      button.form-control.btn.btn-info(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='relocation') Willing to relocate?
@@ -87,13 +87,13 @@ h3 NEW PROFILE
           span &nbsp; {{interest}}
         li.nobullet(ng-if='student.interests.length < 1') empty list
     .form-group
-      input.form-control#interests(name='interest', ng-model='interest', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null")
+      input.form-control#interests(name='interest', ng-model='interest', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null", placeholder='Add Hobby or Interest')
     .form-group
-      button.form-control.btn.btn-success(ng-click='addInterest(interest)') Add Interest
+      button.form-control.btn.btn-info(ng-click='addInterest(interest)') Add Interest
   .col-xs-12.col-sm-6
     .form-group
       label: h6(for='education') Education
-      textarea.form-control#education(type='textarea', rows='6', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
+      textarea.form-control#education(type='textarea', rows='5', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
 .row
   .col-xs-12
     h4: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
