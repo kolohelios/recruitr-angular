@@ -7,17 +7,17 @@ angular.module('recruitr')
   $scope.moveBack = false;
   $scope.moveForward = false;
 
-  function showPage(page){
+  function showList(page){
     Profile.find(page)
     .then(function(response){
       console.log(response);
-      $scope.students = response.data.profiles;
+      $rootScope.students = response.data.profiles;
       $scope.moveForward = $scope.students.length >= 10 ? true : false;
       $scope.moveBack = $scope.page > 1 ? true : false;
     });
   }
 
-  showPage($scope.page);
+  showList($scope.page);
 
   $scope.changePage = function(change){
     if(change === 'next' && $scope.students.length === 10){
@@ -27,10 +27,9 @@ angular.module('recruitr')
       $scope.page -= 1;
       $scope.moveForward = true;
     }
-    showPage($scope.page);
+    showList($scope.page);
   };
   $scope.editStudent = function(student){
-    console.log(student);
     $state.go('profiles.edit', {studentId: student});
   };
   $scope.deleteStudent = function(student){
