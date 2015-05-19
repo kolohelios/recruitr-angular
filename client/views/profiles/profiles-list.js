@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('recruitr')
-.controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state, $window){
+.controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state, $window, skillsList){
   $scope.page = 1;
+  $scope.skills = skillsList;
 
   $scope.moveBack = false;
   $scope.moveForward = false;
@@ -46,7 +47,7 @@ angular.module('recruitr')
       $scope.students = response.data.profiles;
     });
   };
-  
+
   $scope.profileGo = function(index){
     console.log('inside profile list js - index', index);
     $state.go('profiles.show', {studentId: index});
