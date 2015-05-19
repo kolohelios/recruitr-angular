@@ -3,47 +3,31 @@
 angular.module('recruitr')
 .controller('ProfilesNewCtrl', function($scope, Profile, $state, msaList){
   $scope.msa = msaList;
+  $scope.student = {};
+  $scope.student.locationPref = [];
+  console.log($state.params.studentId);
+  if($state.params.studentId){
+    Profile.findStudent($state.params.studentId)
+    .then(function(result){
+      $scope.student = result.data;
+    });
+  }
+
+  $scope.addPreferredLocation = function(newPreferredLocation){
+    console.log(newPreferredLocation);
+    $scope.student.locationPref.push(newPreferredLocation);
+  };
 
   $scope.create = function(){
-    var student = {
-        firstName: $scope.student.firstName,
-        lastName: $scope.student.lastName,
-        photo: $scope.student.photo,
-        skills: $scope.student.skills,
-        exposure: $scope.student.exposure,
-        bio: $scope.student.blurb,
-        location: $scope.student.location,
-        interests: [
-          $scope.student.interest1,
-          $scope.student.interest2,
-          $scope.student.interest3,
-          $scope.student.interest4,
-          $scope.student.interest5
-        ],
-        locationPref: [
-          $scope.student.preferedLocation1,
-          $scope.student.preferedLocation2,
-          $scope.student.preferedLocation3
-        ],
-        remote: $scope.student.remoteWorking,
-        relocate: $scope.student.relocation,
-        available: $scope.student.forHire,
-        education: $scope.student.education,
-        contact: {
-          email: $scope.student.email,
-          phone: $scope.student.phone
-        },
-        social: {
-          github: $scope.student.github,
-          twitter: $scope.student.twitter,
-          linkedin: $scope.student.linkedin,
-          stackoverflow: $scope.student.stackoverflow
-        }
-      };
-    Profile.save(student)
+    // console.log('loc', $scope.student.preferedLocation1);
+    $scope.student.available = $scope.student.available ? $scope.student.available : false;
+    $scope.student.relocate = $scope.student.relocate ? $scope.student.relocate : false;
+    $scope.student.remote = $scope.student.remote ? $scope.student.remote : false;
+    $scope.student.skills = $scope.student.skills.split(',');
+    $scope.student.interests = $scope.student.interests.split(',');
+    Profile.save($scope.student)
     .then(function(){
       $state.go('profiles.list');
     });
   };
-  console.log('in ProfilesNewCtrl');
 });

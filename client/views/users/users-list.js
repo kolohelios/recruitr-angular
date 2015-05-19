@@ -5,6 +5,7 @@ angular.module('recruitr')
   $scope.page = 1;
   $scope.moveBack = false;
   $scope.moveForward = false;
+  $scope.sortReverse = true;
   $scope.changePage = function(change){
     if(change === 'next' && $scope.users.length === 10){
       $scope.page += 1;
@@ -55,9 +56,15 @@ angular.module('recruitr')
     User.deleteUser(user)
     .then(function(response){
       console.log(response);
-      $window._.remove($scope.users, function(user){
+      $window._.remove($scope.users, function(){
         return user._id === response.data._id;
       });
     });
+  };
+  $scope.sort = function(column){
+    if($scope.sortColumn === column){
+      $scope.sortReverse = !$scope.sortReverse;
+    }
+    $scope.sortColumn = column;
   };
 });
