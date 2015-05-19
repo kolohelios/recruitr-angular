@@ -44,7 +44,7 @@ angular.module('recruitr')
     Profile.sortByName(name);
   };
   $scope.sortBySkills = function(skill){
-    Profile.sortsortBySkills(skill);
+    Profile.sortBySkills(skill);
   };
   $scope.profileGo = function(index){
     console.log('inside profile list js - index', index);

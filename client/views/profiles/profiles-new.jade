@@ -105,13 +105,22 @@ h3 NEW PROFILE
         span &nbsp; {{skill}}
       li.nobullet(ng-if='student.skills.length < 1') empty list
     .form-group
-      input.form-control#skills(name='skill', ng-model='skill', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null", placeholder='Enter Skill')
+      input.form-control#skills(name='skill', ng-model='skill', ng-keyup="$event.keyCode == 13 ? addSkill(skill) : null", placeholder='Enter Skill')
     .form-group
-      button.form-control.btn.btn-info(ng-click='addInterest(interest)') Add Skill
+      button.form-control.btn.btn-info(ng-click='addSkill(skill)') Add Skill
   .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='exposure') Exposure
-      textarea.form-control#exposure(type='textarea', rows='4', ng-model='student.exposure', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
+    .col-xs-12.col-sm-6
+      h6 Exposure
+      ul
+        li.nobullet(ng-repeat='exposure in student.exposure track by $index')
+          button.btn.btn-danger.btn-xs(ng-click='removeExposure($index)'): i.fa.fa-trash
+          span &nbsp; {{exposure}}
+        li.nobullet(ng-if='student.exposure.length < 1') empty list
+      .form-group
+        input.form-control#exposure(name='exposure', ng-model='exposure', ng-keyup="$event.keyCode == 13 ? addExposure(exposure) : null", placeholder='Enter Exposure')
+      .form-group
+        button.form-control.btn.btn-info(ng-click='addExposure(exposure)') Add Exposure
   .col-xs-12
     .form-group
-      button.btn-lg.btn-success#createStudent(ng-click='create(student)') Create Developer
+      button.btn-lg.btn-success#createStudent(ng-click='create(student)', ng-hide='editMode') Create Developer
+      button.btn-lg.btn-success#editStudent(ng-click='save(student)', ng-show='editMode') Save Developer
