@@ -38,7 +38,7 @@ angular.module('recruitr')
       obj.password = $scope.user.password1;
       delete obj.password1;
       delete obj.password2;
-      obj.role = parseInt(obj.role, 10);
+      delete obj.role;
       User.save(obj)
       .then(function(){
         $state.go('users.list');
