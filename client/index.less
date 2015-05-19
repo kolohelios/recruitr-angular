@@ -3,13 +3,30 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
   font-size: 62.5%;
-  //background-color: @col-blue;
+  background: -webkit-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue);
+  background: -o-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* Standard syntax */
   font-family: 'Open Sans', helvetica, sans-serif;
+  height: 100vh;
   .navbar {}
   .btn-danger {
     background-color: #9d371c;
     border: none;
   }
+
+hr.divider {
+  height: 5px;
+  width: 20vw;
+  margin: 2vh auto;
+  border-radius: 2px;
+  background-color: @freeze-dk-blue;
+}
+
+h3.profileHead{
+  text-align: center;
+  letter-spacing: 0.1em;
+}
 }
 
 
