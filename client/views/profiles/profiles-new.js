@@ -11,10 +11,12 @@ angular.module('recruitr')
   $scope.student.locationPref = [];
   $scope.student.interests = [];
   $scope.student.skills = [];
+  $scope.student.exposure = [];
   if($state.params.studentId){
     Profile.findStudent($state.params.studentId)
     .then(function(result){
       $scope.student = result.data;
+      $scope.editMode = true;
     });
   }
 
@@ -45,13 +47,33 @@ angular.module('recruitr')
     $scope.student.skills.splice(removeIndex, 1);
   };
 
+  $scope.addExposure = function(exposure){
+    $scope.student.exposure.push(exposure);
+    $scope.skill = '';
+  };
+
+  $scope.removeExposure = function(removeIndex){
+    $scope.student.exposure.splice(removeIndex, 1);
+  };
+
   $scope.create = function(){
     $scope.student.available = $scope.student.available ? $scope.student.available : false;
     $scope.student.relocate = $scope.student.relocate ? $scope.student.relocate : false;
     $scope.student.remote = $scope.student.remote ? $scope.student.remote : false;
-    // $scope.student.skills = $scope.student.skills.split(',');
-    // $scope.student.interests = $scope.student.interests.split(',');
     Profile.save($scope.student)
+    .then(function(){
+      $state.go('profiles.list');
+    });
+  };
+
+  $scope.save = function(student){
+    var obj = angular.copy(student);
+    delete obj._id;
+    delete obj.__v;
+    delete obj.createdAt;
+    var id = student._id;
+    console.log(obj);
+    Profile.editStudent(id, obj)
     .then(function(){
       $state.go('profiles.list');
     });
