@@ -4,30 +4,30 @@ h3 NEW PROFILE
     h4: i.fa.fa-user-plus &nbsp; BASIC INFO
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='firstName', tabindex='1') First Name
+      label: h6(for='firstName') First Name
       input.form-control#firstName(type='text', ng-model='student.firstName')
     .form-group
-      label: h6(for='phone', tabindex='4') Phone
+      label: h6(for='phone') Phone
       input.form-control#phone(type='tel', ng-model='student.contact.phone')
     .form-group
       label: h6(for='website') Website
       input.form-control#website(type='url', ng-model='student.contact.website')
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='lastName', tabindex=2) Last Name 
+      label: h6(for='lastName') Last Name
       input.form-control#lastName(type='text', ng-model='student.lastName')
     .form-group
-      label: h6(for='github', tabindex='5') GitHub
+      label: h6(for='github') GitHub
       input.form-control#github(type='url', ng-model='student.social.github')
     .form-group
       label: h6(for='stackoverflow') StackOverflow
       input.form-control#stackoverflow(type='url', ng-model='student.social.stackoverflow')
   .col-xs-12.col-sm-4
     .form-group
-      label: h6(for='linkedin', tabindex='3') LinkedIn
+      label: h6(for='linkedin') LinkedIn
       input.form-control#linkedin(type='url', ng-model='student.social.linkedIn')
     .form-group
-      label: h6(for='twitter', tabindex='6') Twitter
+      label: h6(for='twitter') Twitter
       input.form-control#github(type='url', ng-model='student.social.twitter')
     .form-group
       label: h6(for='email') Email
@@ -42,26 +42,18 @@ h3 NEW PROFILE
     .form-group
       h6 Preferred Locations
       ul
-        li(ng-repeat='location in student.locationPref') {{location}}
+        li.nobullet(ng-repeat='location in student.locationPref track by $index')
+          button.btn.btn-danger.btn-xs(ng-click='removePreferredLocation($index)'): i.fa.fa-trash
+          span &nbsp; {{location}}
+        li.nobullet(ng-if='student.locationPref.length < 1') empty list
     .form-group
       label: h6(for='preflocation') Add Preferred Location
-      select.form-control#location(ng-model='newPreferredLocation')
-        option(ng-repeat='place in msa' value='{{place}}') {{place}}
+      ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
+        ui-select-match(placeholder='Location', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null") {{$select.selected.name}}
+        ui-select-choices(repeat='place in msa | filter: $select.search')
+          div(ng-bind-html='place.name | highlight: $select.search') 
     .form-group
-      button.form-control.btn.btn-success(ng-click='addPreferredLocation(newPreferredLocation)') Add Preferred Location
-    
-    //- .form-group
-    //-   label: h6(for='preferedLocation1') First Preferred Location
-    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation1')
-    //-     option(ng-repeat='place in msa' value='{{place}}') {{place}}
-    //- .form-group
-    //-   label: h6(for='preferedLocation2') Second Preferred Location
-    //-   select.form-control#preferedLocation2(ng-model='student.preferedLocation.preferedLocation2')
-    //-     option(ng-repeat='place in msa', value='{{place}}') {{place}}
-    //- .form-group
-    //-   label: h6(for='preferedLocation3') Third Perferred Location
-    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation3')
-    //-     option(ng-repeat='place in msa') {{place}}
+      button.form-control.btn.btn-success(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='relocation') Willing to relocate?
@@ -85,11 +77,23 @@ h3 NEW PROFILE
       img#photoView(base-sixty-four-image="student.photo")
 .row
   .col-xs-12
-    h4: i.fa.fa-bicycle &nbsp; HOBBIES AND INTERESTS
-  .col-xs-12
+    h4: i.fa.fa-bicycle &nbsp; HOBBIES, INTERESTS, AND EDUCATION
+  .col-xs-12.col-sm-6
     .form-group
-      label: h6(for='interests') Hobbies/Interests
-      textarea.form-control#interests(name='interests', ng-model='student.interests')
+      h6 Hobbies/Interests
+      ul
+        li.nobullet(ng-repeat='interest in student.interests track by $index')
+          button.btn.btn-danger.btn-xs(ng-click='removeInterest($index)'): i.fa.fa-trash
+          span &nbsp; {{interest}}
+        li.nobullet(ng-if='student.interests.length < 1') empty list
+    .form-group
+      input.form-control#interests(name='interest', ng-model='interest', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null")
+    .form-group
+      button.form-control.btn.btn-success(ng-click='addInterest(interest)') Add Interest
+  .col-xs-12.col-sm-6
+    .form-group
+      label: h6(for='education') Education
+      textarea.form-control#education(type='textarea', rows='6', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
 .row
   .col-xs-12
     h4: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
@@ -99,12 +103,8 @@ h3 NEW PROFILE
       textarea.form-control#skills(type='textarea', ng-model='student.skills', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
   .col-xs-12.col-sm-6
     .form-group
-      label: h6(for='education') Education
-      textarea.form-control#education(type='textarea', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-  .col-xs-12.col-sm-6
-    .form-group
       label: h6(for='exposure') Exposure
       textarea.form-control#exposure(type='textarea', ng-model='student.exposure', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-  .col-xs-12.col-sm-6
+  .col-xs-12
     .form-group
       button.btn-lg.btn-success#createStudent(ng-click='create(student)') Create Developer
