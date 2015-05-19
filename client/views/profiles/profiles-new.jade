@@ -49,7 +49,7 @@ h3 NEW PROFILE
     .form-group
       label: h6(for='preflocation') Add Preferred Location
       ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
-        ui-select-match(placeholder='Choose a Preferred Location', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null") {{$select.selected.name}}
+        ui-select-match(placeholder='Choose a Preferred Location', ng-keyup="$event.keyCode == 13 ? addPreferredLocation(msa.selected.id) : null") {{$select.selected.name}}
         ui-select-choices(repeat='place in msa | filter: $select.search')
           div(ng-bind-html='place.name | highlight: $select.search') 
     .form-group
@@ -104,10 +104,13 @@ h3 NEW PROFILE
         button.btn.btn-danger.btn-xs(ng-click='removeSkill($index)'): i.fa.fa-trash
         span &nbsp; {{skill}}
       li.nobullet(ng-if='student.skills.length < 1') empty list
+      h6 Add Skill
+      ui-select(ng-model='skillList.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
+        ui-select-match(placeholder='Choose a Skill', ng-keyup="$event.keyCode == 13 ? addSkill(devSkill.selected.id) : null") {{$select.selected.name}}
+        ui-select-choices(repeat='skill in skillList | filter: $select.search')
+          div(ng-bind-html='skill.name | highlight: $select.search')
     .form-group
-      input.form-control#skills(name='skill', ng-model='skill', ng-keyup="$event.keyCode == 13 ? addSkill(skill) : null", placeholder='Enter Skill')
-    .form-group
-      button.form-control.btn.btn-info(ng-click='addSkill(skill)') Add Skill
+      button.form-control.btn.btn-info(ng-click='addSkill(skillList.selected.id)') Add Skill
   .col-xs-12.col-sm-6
     .col-xs-12.col-sm-6
       h6 Exposure

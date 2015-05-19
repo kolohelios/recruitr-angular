@@ -21,5 +21,9 @@ angular.module('recruitr')
     return $http.delete(nodeUrl + '/profiles/' + studentId);
   };
 
+  Profile.sortBy = function(skill){
+    return $http.get(nodeUrl + '/profiles?skill=' + skill);
+  };
+
   return Profile;
 });
