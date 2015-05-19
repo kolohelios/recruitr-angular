@@ -1,7 +1,11 @@
-h3 {{name | uppercase}}
+.row
+  .col-sm-4.col-sm-offset-4.col-xs-10.col-xs-offset-1
+    h3.usersHead LOGIN
+
+// hr.divider
 
 .row
-  .col-xs-4.col-xs-offset-1
+  .col-sm-4.col-sm-offset-4.col-xs-10.col-xs-offset-1
     form(name='userForm', novalidate)
       .form-group
         label: h6(for='email') Email
@@ -10,7 +14,7 @@ h3 {{name | uppercase}}
         label: h6(for='password') Password
         input.form-control.login#password(type='password', name='password', ng-model='user.password', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
 .row
-  .col-xs-4.col-xs-offset-1
+  .col-sm-4.col-sm-offset-4.col-xs-10.col-xs-offset-1
       .form-group
         button.btn.btn-success.login#createUser(ng-click='submit(user)') Sign in with Email
   .col-xs-8
