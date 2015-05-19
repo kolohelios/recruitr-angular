@@ -40,12 +40,13 @@ angular.module('recruitr')
       });
     });
   };
-  $scope.sortByName = function(name){
-    Profile.sortByName(name);
+  $scope.sortBy = function(){
+    Profile.sortBy($scope.searchSkills)
+    .then(function(response){
+      $scope.students = response.data.profiles;
+    });
   };
-  $scope.sortBySkills = function(skill){
-    Profile.sortBySkills(skill);
-  };
+  
   $scope.profileGo = function(index){
     console.log('inside profile list js - index', index);
     $state.go('profiles.show', {studentId: index});

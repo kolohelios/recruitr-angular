@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('recruitr')
-.controller('ProfilesNewCtrl', function($scope, Profile, $state, msaList){
+.controller('ProfilesNewCtrl', function($scope, Profile, $state, msaList, skillsList){
   $scope.msa = msaList.map(function(msaItem){
     var msaObj = {};
     msaObj.id = msaObj.name = msaItem;
     return msaObj;
+  });
+  $scope.skillList = skillsList.map(function(skillItem){
+    var skillObj = {};
+    skillObj.id = skillObj.name = skillItem;
+    return skillObj;
   });
   $scope.student = {};
   $scope.student.locationPref = [];
@@ -40,7 +45,7 @@ angular.module('recruitr')
 
   $scope.addSkill = function(skill){
     $scope.student.skills.push(skill);
-    $scope.skill = '';
+    $scope.skillList.selected = '';
   };
 
   $scope.removeSkill = function(removeIndex){
