@@ -2,46 +2,33 @@
 
 angular.module('recruitr')
 .controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state, $window){
-  Profile.find(1)
-  .then(function(response){
-    $scope.students = response.data.profiles;
-    if($scope.students.length === 10){
-      $scope.moveForward = true;
-    }
-  });
   $scope.page = 1;
 
   $scope.moveBack = false;
   $scope.moveForward = false;
 
+  function showPage(page){
+    Profile.find(page)
+    .then(function(response){
+      console.log(response);
+      $scope.students = response.data.profiles;
+      $scope.moveForward = $scope.students.length >= 10 ? true : false;
+      $scope.moveBack = $scope.page > 1 ? true : false;
+    });
+  }
+
+  showPage($scope.page);
+
   $scope.changePage = function(change){
-    if(change === 'next' && $scope.users.length === 10){
+    if(change === 'next' && $scope.students.length === 10){
       $scope.page += 1;
       $scope.moveBack = true;
     } else if(change === 'prev' && $scope.page !== 1){
       $scope.page -= 1;
       $scope.moveForward = true;
     }
-    Profile.find($scope.page)
-    .then(function(response){
-      $scope.users = response.data.profile;
-    });
-    if($scope.page === 1){
-      $scope.moveBack = false;
-    } else if($scope.users.length < 10){
-      $scope.moveForward = false;
-    }
+    showPage($scope.page);
   };
-
-  Profile.find()
-  .then(function(response){
-    $scope.students = response.data.profiles;
-    $rootScope.searchResults = response.data.profiles;
-    if($scope.students.length === 10){
-      $scope.moveForward = true;
-    }
-  });
-
   $scope.editStudent = function(student){
     console.log(student);
     $state.go('profiles.edit', {studentId: student});
