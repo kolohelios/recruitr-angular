@@ -2,10 +2,13 @@
 
 angular.module('recruitr')
 .controller('ProfilesNewCtrl', function($scope, Profile, $state, msaList){
-  $scope.msa = msaList;
+  $scope.msa = msaList.map(function(msaItem){
+    var msaObj = {};
+    msaObj.id = msaObj.name = msaItem;
+    return msaObj;
+  });
   $scope.student = {};
   $scope.student.locationPref = [];
-  console.log($state.params.studentId);
   if($state.params.studentId){
     Profile.findStudent($state.params.studentId)
     .then(function(result){
@@ -14,12 +17,15 @@ angular.module('recruitr')
   }
 
   $scope.addPreferredLocation = function(newPreferredLocation){
-    console.log(newPreferredLocation);
+    $scope.msa.selected = '';
     $scope.student.locationPref.push(newPreferredLocation);
   };
 
+  $scope.removePreferredLocation = function(removeIndex){
+    $scope.student.locationPref.splice(removeIndex, 1);
+  };
+
   $scope.create = function(){
-    // console.log('loc', $scope.student.preferedLocation1);
     $scope.student.available = $scope.student.available ? $scope.student.available : false;
     $scope.student.relocate = $scope.student.relocate ? $scope.student.relocate : false;
     $scope.student.remote = $scope.student.remote ? $scope.student.remote : false;

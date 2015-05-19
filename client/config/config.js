@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('recruitr')
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, uiSelectConfig){
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
@@ -22,4 +22,8 @@ angular.module('recruitr')
   .state('profiles.new', {url: '/new', templateUrl: '/views/profiles/profiles-new.html', controller: 'ProfilesNewCtrl'})
   .state('profiles.edit', {url: '/{studentId}/edit', templateUrl: '/views/profiles/profiles-new.html', controller: 'ProfilesNewCtrl'})
   .state('profiles.show', {url: '/{studentId}', templateUrl: '/views/profiles/profiles-show.html', controller: 'ProfilesShowCtrl'});
+
+  uiSelectConfig.theme = 'bootstrap';
+  uiSelectConfig.resetSearchInput = true;
+  uiSelectConfig.appendToBody = true;
 });

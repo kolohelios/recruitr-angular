@@ -42,26 +42,18 @@ h3 NEW PROFILE
     .form-group
       h6 Preferred Locations
       ul
-        li(ng-repeat='location in student.locationPref') {{location}}
+        li.nobullet(ng-repeat='location in student.locationPref track by $index')
+          button.btn.btn-danger.btn-xs(ng-click='removePreferredLocation($index)'): i.fa.fa-trash
+          span &nbsp; {{location}}
+        li.nobullet(ng-if='student.locationPref.length < 1') empty list
     .form-group
       label: h6(for='preflocation') Add Preferred Location
-      select.form-control#location(ng-model='newPreferredLocation')
-        option(ng-repeat='place in msa' value='{{place}}') {{place}}
+      ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
+        ui-select-match(placeholder='Location') {{$select.selected.name}}
+        ui-select-choices(repeat='place in msa | filter: $select.search')
+          div(ng-bind-html='place.name | highlight: $select.search') 
     .form-group
-      button.form-control.btn.btn-success(ng-click='addPreferredLocation(newPreferredLocation)') Add Preferred Location
-    
-    //- .form-group
-    //-   label: h6(for='preferedLocation1') First Preferred Location
-    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation1')
-    //-     option(ng-repeat='place in msa' value='{{place}}') {{place}}
-    //- .form-group
-    //-   label: h6(for='preferedLocation2') Second Preferred Location
-    //-   select.form-control#preferedLocation2(ng-model='student.preferedLocation.preferedLocation2')
-    //-     option(ng-repeat='place in msa', value='{{place}}') {{place}}
-    //- .form-group
-    //-   label: h6(for='preferedLocation3') Third Perferred Location
-    //-   select.form-control#preferedLocation1(type='text', ng-model='student.preferedLocation.preferedLocation3')
-    //-     option(ng-repeat='place in msa') {{place}}
+      button.form-control.btn.btn-success(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
   .col-xs-4.col-sm-2
     .form-group
       label: h6(for='relocation') Willing to relocate?
