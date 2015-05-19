@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('recruitr')
-.controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state){
-
+.controller('ProfilesListCtrl', function($scope, $rootScope, Profile, $state, $window){
   Profile.find(1)
   .then(function(response){
     $scope.students = response.data.profiles;
@@ -48,9 +47,11 @@ angular.module('recruitr')
     $state.go('profiles.edit', {studentId: student});
   };
   $scope.deleteStudent = function(student){
-    Profile.deleteStudent(student)
+    Profile.destroy(student)
     .then(function(response){
-      $scope.students = response.data.students;
+      $window._.remove($scope.searchResults, function(profile){
+        return profile._id === response.data._id;
+      });
     });
   };
   $scope.sortByName = function(name){

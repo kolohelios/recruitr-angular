@@ -16,6 +16,9 @@ angular.module('recruitr')
   Profile.findStudent = function(studentId){
     return $http.get(nodeUrl + '/profiles/' + studentId);
   };
+  Profile.destroy = function(studentId){
+    return $http.delete(nodeUrl + '/profiles/' + studentId)
+  };
 
   return Profile;
 });
