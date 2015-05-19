@@ -28,17 +28,18 @@ h3 LIST PROFILES
             th First Name
             th(ng-if='activeUser.role > 0') Last Name
             th Skills
-            th Location
+            th Preferred Locations
             th(ng-if='activeUser.role===10') Edit
             th(ng-if='activeUser.role===10') Delete
         tbody
           tr(ng-repeat='student in students track by $index')
-            td: img.photo(ng-src='{{student.photo}}', ng-click='profileGo($index)')
+            td: img.photo(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
             td(ng-click='profileGo($index)') {{student.firstName}}
             td(ng-if='activeUser.role > 0', ng-click='profileGo($index)') {{student.lastName}}
             td: ul 
               li(ng-repeat='skill in student.skills') {{skill}}
-            td {{student.location}}
+            td: ul
+              li(ng-repeat='location in student.locationPref') {{location}}
             td(ng-if='activeUser.role===10'): button.btn.btn-warning: a(ui-sref='profiles.edit({studentId: student._id})') Edit
             td(ng-if='activeUser.role===10'): button.btn.btn-danger(ng-click='deleteStudent(student._id)') Delete
 .row

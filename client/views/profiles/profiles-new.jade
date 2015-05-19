@@ -93,7 +93,7 @@ h3 NEW PROFILE
   .col-xs-12.col-sm-6
     .form-group
       label: h6(for='education') Education
-      textarea.form-control#education(type='textarea', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
+      textarea.form-control#education(type='textarea', rows='6', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
 .row
   .col-xs-12
     h4: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
