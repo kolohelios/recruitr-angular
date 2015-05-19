@@ -24,8 +24,23 @@ hr.divider {
 }
 
 h3.profileHead{
-  text-align: center;
+  text-align: center !important;
   letter-spacing: 0.1em;
+}
+
+.btn-success{
+  background-color: @freeze-green-blue;
+  color: @freeze-dk-blue;
+  border: @freeze-dk-blue;
+}
+.btn-success:hover{
+  background-color: #c7a4c2;
+}
+.form-group > .btn {
+  border-radius: 20px;
+}
+.form-group > input[type=text], input[type=email], input[type=password] {
+  border-radius: 20px;
 }
 }
 
@@ -35,6 +50,7 @@ h3.profileHead{
 @freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
 @freeze-green-blue: #5fe9de;
 @freeze-mid-blue: #486e96;
+@freeze-p-pink: #c7a4c2;
 
 
 // @col-blue: rgba(59, 179, 210, 1);
