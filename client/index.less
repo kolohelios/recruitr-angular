@@ -1,15 +1,16 @@
 @import 'views/nav/nav';
 @import 'views/profiles/profiles';
+@import 'views/general/home';
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
   font-size: 62.5%;
-  background: -webkit-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue);
-  background: -o-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(180deg, @freeze-mid-blue, @freeze-green-blue); /* Standard syntax */
+  background: -webkit-linear-gradient(-90deg, @freeze-mid-blue, @freeze-green-blue);
+  background: -o-linear-gradient(-90deg, @freeze-mid-blue, @freeze-green-blue); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, @freeze-mid-blue, @freeze-green-blue); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, @freeze-mid-blue, @freeze-green-blue); /* Standard syntax */
   font-family: 'Open Sans', helvetica, sans-serif;
-  height: 100vh;
+
   min-height: 100vh;
   .navbar {}
   .btn-danger {
@@ -47,7 +48,7 @@ h3.profileHead{
 .form-group > .btn {
   border-radius: 20px;
 }
-.form-group > input[type=text], input[type=email], input[type=password] {
+.form-group > input[type=text], input[type=email], input[type=password], input[type='url'], input[type='tel'] {
   border-radius: 20px;
 }
 }
