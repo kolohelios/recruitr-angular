@@ -6,7 +6,7 @@ angular.module('recruitr')
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-  .state('home', {url: '/', templateUrl: '/views/general/home.html'})
+  .state('home', {url: '/', templateUrl: '/views/general/home.html', controller: 'HomeCtrl'})
   .state('login', {url: '/login', templateUrl: '/views/users/login.html', controller: 'LoginCtrl'})
   .state('register', {url: '/register', templateUrl: '/views/users/users-new.html', controller: 'UsersNewCtrl'})
   .state('users', {url: '/users', templateUrl: '/views/users/users.html', abstract: true})

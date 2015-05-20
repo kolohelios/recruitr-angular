@@ -1,39 +1,38 @@
 h3.text-center(ng-hide='isEdit') NEW USER
 h3.text-center(ng-show='isEdit') EDIT USER
-.row
-  .col-xs-8.col-xs-offset-2
-    form(name='userForm', novalidate)
-      .form-group
-        label: h6(for='firstName') First Name
-        input.form-control.login#firstName(type='text', name='firstName', ng-model='user.firstName')
-      .form-group
-        label: h6(for='lastName') Last Name
-        input.form-control.login#lastName(type='text', name='lastName', ng-model='user.lastName')
-      .form-group
-        label: h6(for='company') Company
-        input.form-control.login#company(type='text', name='company', ng-model='user.company')
-  .col-xs-8.col-xs-offset-2
-      .form-group
-        label: h6(for='email') Email
-        input.form-control.login#email(type='email', name='email', ng-model='user.email') 
-      //- .form-group
-      //-   label: h6(for='position') Company Position
-      //-   input.form-control.login#position(type='text', name='position', ng-model='user.position' placeholder='Recruiter, CTO, ect')
-      .form-group(ng-if='activeUser.role === 10 && isEdit')
-        label: h6(for='type') User Access Type
-        select.form-control.login#type(name='type', ng-model='user.role')
-          option(value='0' selected) Viewer
-          option(value='5') Super Viewer
-          option(value='10') Admin
-  .col-xs-8.col-xs-offset-2
-      .form-group
-        label(ng-hide='isEdit'): h6(for='password1') Password
-        label(ng-show='isEdit'): h6(for='password1') Change Password
-        input.form-control.login#password1(type='password', name='password1', ng-model='user.password1')
-      .form-group
-        label: h6(for='password2') Password Validation
-        input.form-control.login#password2(type='password', name='password2', ng-model='user.password2', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-      .form-group(ng-hide='isEdit')
-        button.btn.btn-success.login#createUser(ng-click='create(user)') Create New User
-      .form-group(ng-show='isEdit')
-        button.btn.btn-success.login#createUser(ng-click='edit(user)') Save Edit
+.col-xs-8.col-xs-offset-2
+  form(name='userForm', novalidate)
+    .form-group
+      // label: h6(for='firstName') First Name
+      input.form-control.login#firstName(type='text', name='firstName', ng-model='user.firstName', placeholder="First name")
+    .form-group
+      // label: h6(for='lastName') Last Name
+      input.form-control.login#lastName(type='text', name='lastName', ng-model='user.lastName', placeholder="Last name")
+    .form-group
+      // label: h6(for='company') Company
+      input.form-control.login#company(type='text', name='company', ng-model='user.company', placeholder="company")
+
+    .form-group
+      // label: h6(for='email') Email
+      input.form-control.login#email(type='email', name='email', ng-model='user.email', placeholder="email") 
+    //- .form-group
+    //-   label: h6(for='position') Company Position
+    //-   input.form-control.login#position(type='text', name='position', ng-model='user.position' placeholder='Recruiter, CTO, ect')
+    .form-group(ng-if='activeUser.role === 10 && isEdit')
+      label: h6(for='type') User Access Type
+      select.form-control.login#type(name='type', ng-model='user.role')
+        option(value='0' selected) Viewer
+        option(value='5') Super Viewer
+        option(value='10') Admin
+
+    .form-group
+      // label(ng-hide='isEdit'): h6(for='password1') Password
+      // label(ng-show='isEdit'): h6(for='password1') Change Password
+      input.form-control.login#password1(type='password', name='password1', ng-model='user.password1', placeholder="password")
+    .form-group
+      // label: h6(for='password2') Password Validation
+      input.form-control.login#password2(type='password', name='password2', ng-model='user.password2', placeholder="confirm password", ng-keyup="$event.keyCode == 13 ? submit(user) : null")
+    .form-group(ng-hide='isEdit')
+      button.btn.btn-success.login#createUser(ng-click='create(user)') Create New User
+    .form-group(ng-show='isEdit')
+      button.btn.btn-success.login#createUser(ng-click='edit(user)') Save Edit
