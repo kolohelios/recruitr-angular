@@ -18,9 +18,9 @@ h2#profileTitle.text-center LIST PROFILES
     .row
       .col-xs-12
         .container-fluid
-          .col-md-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index')
+          .col-md-5.col-sm-10#cardTemplate(ng-click='profileGo($index)' ng-repeat='student in students track by $index')
             .col-md-3.col-sm-12
-              h3#listName(ng-click='profileGo($index)') {{student.firstName}} {{student.lastName}}
+              h3#listName {{student.firstName}} {{student.lastName}}
               img.photo.hidden-xs#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
               a(ui-sref='profiles.edit({studentId: student._id})')
                 h3.space: i.fa.fa-cog.black
