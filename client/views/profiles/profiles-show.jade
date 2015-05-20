@@ -2,9 +2,9 @@
 .container#profile-show
   .row
     .col-xs-6
-      p: a(ng-click='prev()'): i.fa.fa-caret-left &nbsp; PREVIOUS
+      p(ng-show='isPrev'): a(ng-click='prev()'): i.fa.fa-caret-left &nbsp; PREVIOUS
     .col-xs-6
-      p.right-btn-float: a(ng-click='next()') NEXT &nbsp;
+      p.right-btn-float(ng-show='isNext'): a(ng-click='next()') NEXT &nbsp;
         span: i.fa.fa-caret-right
   .row
     .col-xs-12.col-sm-8.col-md-6.col-md-push-4
@@ -50,7 +50,7 @@
       p
         i.fa.fa-phone: a(href="tel:{{student.contact.phone}}") &nbsp; {{student.contact.phone}}
       p
-        i.fa.fa-envelope-o &nbsp; {{student.contact.address}}
+        i.fa.fa-home: a(href='{{student.contact.website}}') &nbsp; {{student.contact.website}}
       p
         i.fa.fa-linkedin: a(href="{{student.social.linkedin}}") &nbsp; LinkedIn
       p
