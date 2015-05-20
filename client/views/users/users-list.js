@@ -6,24 +6,6 @@ angular.module('recruitr')
   $scope.moveBack = false;
   $scope.moveForward = false;
   $scope.sortReverse = true;
-  $scope.changePage = function(change){
-    if(change === 'next' && $scope.users.length === 10){
-      $scope.page += 1;
-      $scope.moveBack = true;
-    } else if(change === 'prev' && $scope.page !== 1){
-      $scope.page -= 1;
-      $scope.moveForward = true;
-    }
-    User.find($scope.page)
-    .then(function(response){
-      $scope.users = response.data.users;
-    });
-    if($scope.page === 1){
-      $scope.moveBack = false;
-    } else if($scope.users.length < 10){
-      $scope.moveForward = false;
-    }
-  };
   User.find()
   .then(function(response){
     console.log(response);
@@ -52,12 +34,35 @@ angular.module('recruitr')
     // $state.go('houses.edit', {houseId: $state.params.houseId})
     $state.go('users.edit', {userId: user._id});
   };
+  $scope.changePage = function(change){
+    if(change === 'next' && $scope.users.length === 10){
+      $scope.page += 1;
+      $scope.moveBack = true;
+    } else if(change === 'prev' && $scope.page !== 1){
+      $scope.page -= 1;
+      $scope.moveForward = true;
+    }
+    User.find($scope.page)
+    .then(function(response){
+      $scope.users = response.data.users;
+    });
+    if($scope.page === 1){
+      $scope.moveBack = false;
+    } else if($scope.users.length < 10){
+      $scope.moveForward = false;
+    }
+  };
   $scope.deleteUser = function(user){
     User.deleteUser(user)
     .then(function(response){
       console.log(response);
       $window._.remove($scope.users, function(){
         return user._id === response.data._id;
+      })
+      User.find($scope.page)
+      .then(function(response){
+        console.log('user information', response.data);
+        $scope.users = response.data;
       });
     });
   };
