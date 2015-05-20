@@ -65,6 +65,7 @@ angular.module('recruitr')
     $scope.student.available = $scope.student.available ? $scope.student.available : false;
     $scope.student.relocate = $scope.student.relocate ? $scope.student.relocate : false;
     $scope.student.remote = $scope.student.remote ? $scope.student.remote : false;
+    $scope.student.photo = $scope.student.photo <= 1048576 ? $scope.student.photo : '';
     Profile.save($scope.student)
     .then(function(){
       $state.go('profiles.list');
