@@ -1,10 +1,25 @@
 'use strict';
 
 angular.module('recruitr')
-.controller('HomeCtrl', function(){
+.controller('HomeCtrl', function($scope, User, $state, $http, $rootScope, $window){
 
-  var tempPassword = generatePassword();
-  console.log(tempPassword);
+  $scope.selfRegistration = function(email){
+    var user = {};
+    user.email = email;
+    user.password = generatePassword();
+    User.save(user)
+    .then(function(){
+      User.login(user)
+      .then(function(result){
+        $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.token;
+        $rootScope.activeUser = result.data.user;
+        $state.go('profiles.list');
+      });
+    })
+    .catch(function(){
+      $window.swal({title: 'Registration Error', text: 'You already have an account. Please login instead.', type: 'error'});
+    });
+  };
 
   function generatePassword(){
     var password = [];

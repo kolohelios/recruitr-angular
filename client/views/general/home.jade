@@ -1,4 +1,4 @@
 #home
   h2 GET TALENT
-  input(type='text')
-  input.btn.btn(type='submit' value='Get talent' placeholder='enter email')
+  input(type='text' ng-model='email')
+  input.btn.btn(type='submit' value='Get talent' placeholder='enter email' ng-click='selfRegistration(email)')
