@@ -1,19 +1,26 @@
+@freeze-dk-blue: #244d82;
+@freeze-lt-blue: #c2e2f1;
+@freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
+@freeze-green-blue: #5fe9de;
+@freeze-mid-blue: #486e96;
+@freeze-p-pink: #c7a4c2;
+
 .navbar.navbar-default{
   position: static;
   height: 75px;
-  border-bottom: #244d82 5px solid;
+  border-bottom: @freeze-green-blue 5px solid;
   @font-style: 'Open Sans', helvetica, sans-serif;
-  box-shadow: 5px 0 5px #1e1e1e;
-  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 0 5px @freeze-dk-blue;
+  background-color: @freeze-lt-blue-50;
   font-size: 3em;
   letter-spacing: 0.01em;
   a{
-    color:@freeze-dk-blue !important;
+    color: @freeze-dk-blue;
     margin-left: 25px;
     transition: 0.2s;
   }
   a:hover {
-    color: @freeze-dk-blue;
+    color: @freeze-dk-blue !important;
     border-bottom: @freeze-dk-blue 5px solid;
     border-radius: 4px;
     font-weight: strong;
@@ -32,7 +39,7 @@
 
   a.navbar-brand{
     background-color: @freeze-dk-blue;
-    font-size: 3.2em;
+    //font-size: 3.2em;
     color: white;
     margin:0 25px;
     height: 69px;;
