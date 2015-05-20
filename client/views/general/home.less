@@ -1,0 +1,94 @@
+@freeze-dk-blue: #244d82;
+@freeze-lt-blue: #c2e2f1;
+@freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
+@freeze-green-blue: #5fe9de;
+@freeze-mid-blue: #486e96;
+@freeze-p-pink: #c7a4c2;
+
+
+@media screen and (max-width: 768px){
+  #home {
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+
+
+  h2 {
+    text-align: center;
+    font-size: 32px;
+  }
+  input[type=submit] {
+    border-radius: 25px !important;
+    border: 0;
+    width: 35%;
+    height:75px;
+    background: @freeze-green-blue;
+    border-top-right-radius: 35px !important;
+    border-bottom-right-radius: 35px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin-bottom: 1px;
+    border: @freeze-mid-blue 3px solid;
+    position: absolute;
+    left: 60%;
+    font-size: 22px;
+  }
+  input[type=text] {
+    width: 65%;
+    height: 75px;
+    shadow: none;
+    border: @freeze-mid-blue 3px solid;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    position: absolute;
+    left:0;
+    font-size: 25px;
+    color: #1e1e1e;
+    padding-left:15px;
+  }
+  }
+}
+@media screen and (min-width: 769px){
+  #home {
+    width: 700px;
+    margin:0 auto;
+    position: relative;
+    .h2 {
+      text-align: center !important;
+    }
+    h2 {
+      text-align: center;
+      font-size: 40px;
+    }
+
+  input[type=submit] {
+    border-radius: 25px !important;
+    border: 0;
+    width: 150px;
+    height:75px;
+    background: @freeze-green-blue;
+    border-top-right-radius: 35px !important;
+    border-bottom-right-radius: 35px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin-bottom: 1px;
+    border: @freeze-mid-blue 3px solid;
+    position: absolute;
+    left: 545px;
+    font-size: 22px;
+  }
+  input[type=text] {
+    width: 548px;
+    height: 75px;
+    shadow: none;
+    border: @freeze-mid-blue 3px solid;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    position: absolute;
+    left:0;
+    font-size: 25px;
+    color: #1e1e1e;
+    padding-left:15px;
+  }
+}
+}
