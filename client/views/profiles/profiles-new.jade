@@ -1,110 +1,135 @@
-h3 NEW PROFILE
-.row
-  .col-xs-12
-    h4: i.fa.fa-user-plus &nbsp; BASIC INFO
-  .col-xs-12.col-sm-4
-    .form-group
-      label: h6(for='firstName') First Name
-      input.form-control#firstName(type='text', ng-model='student.firstName')
-    .form-group
-      label: h6(for='phone') Phone
-      input.form-control#phone(type='tel', ng-model='student.contact.phone')
-    .form-group
-      label: h6(for='website') Website
-      input.form-control#website(type='url', ng-model='student.contact.website')
-  .col-xs-12.col-sm-4
-    .form-group
-      label: h6(for='lastName') Last Name
-      input.form-control#lastName(type='text', ng-model='student.lastName')
-    .form-group
-      label: h6(for='github') GitHub
-      input.form-control#github(type='url', ng-model='student.social.github')
-    .form-group
-      label: h6(for='stackoverflow') StackOverflow
-      input.form-control#stackoverflow(type='url', ng-model='student.social.stackoverflow')
-  .col-xs-12.col-sm-4
-    .form-group
-      label: h6(for='linkedin') LinkedIn
-      input.form-control#linkedin(type='url', ng-model='student.social.linkedIn')
-    .form-group
-      label: h6(for='twitter') Twitter
-      input.form-control#github(type='url', ng-model='student.social.twitter')
-    .form-group
-      label: h6(for='email') Email
-      input.form-control#email(type='email', ng-model='student.contact.email')
-.row
-  .col-xs-12
-    h4: i.fa.fa-map-marker &nbsp; LOCATION PREFERENCES
-  .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='location') Location
-      input.form-control#location(type='text', ng-model='student.location')
-    .form-group
-      h6 Preferred Locations
+h3.text-center DEVELOPER PROFILE
+.container
+  .row
+    .col-xs-10.col-xs-offset-1
+      h4.text-center: i.fa.fa-user-plus &nbsp; BASIC INFO
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='firstName') First Name
+        input.form-control#firstName(type='text', ng-model='student.firstName')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='lastName') Last Name
+        input.form-control#lastName(type='text', ng-model='student.lastName')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='phone') Phone
+        input.form-control#phone(type='tel', ng-model='student.contact.phone')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='email') Email
+        input.form-control#email(type='email', ng-model='student.contact.email')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='website') Website
+        input.form-control#website(type='url', ng-model='student.contact.website')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='github') GitHub
+        input.form-control#github(type='url', ng-model='student.social.github')
+      .form-group
+        label: h6(for='stackoverflow') StackOverflow
+        input.form-control#stackoverflow(type='url', ng-model='student.social.stackoverflow')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='linkedin') LinkedIn
+        input.form-control#linkedin(type='url', ng-model='student.social.linkedIn')
+      .form-group
+        label: h6(for='twitter') Twitter
+        input.form-control#github(type='url', ng-model='student.social.twitter')
+  .row
+    .col-xs-10.col-xs-offset-1
+      h4.text-center: i.fa.fa-map-marker &nbsp; LOCATION
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='location') Location
+        input.form-control#location(type='text', ng-model='student.location')
+      .form-group
+        h6 Locations
+        ul
+          li.nobullet(ng-repeat='location in student.locationPref track by $index')
+            button.btn.btn-info.btn-xs(ng-click='removePreferredLocation($index)') X
+            span &nbsp; {{location}}
+          li.nobullet(ng-if='student.locationPref.length < 1') empty list
+      .form-group
+        label: h6(for='preflocation') Add Preferred Location
+        ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
+          ui-select-match(placeholder='Choose a Preferred Location', ng-keyup="$event.keyCode == 13 ? addPreferredLocation(msa.selected.id) : null") {{$select.selected.name}}
+          ui-select-choices(repeat='place in msa | filter: $select.search')
+            div(ng-bind-html='place.name | highlight: $select.search') 
+      .form-group
+        button.form-control.btn.btn-info(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
+    .col-xs-10.col-xs-offset-1
+      .col-xs-4
+        .form-group
+          label: h6(for='relocation') Willing to relocate?
+          input.form-control#relocation(type='checkbox', ng-model='student.relocate')
+      .col-xs-4
+        .form-group
+          label: h6(for='remoteWorking') Will work remotely?
+          input.form-control#remoteWorking(type='checkbox', ng-model='student.remote')
+      .col-xs-4
+        .form-group
+          label: h6(for='forHire') Available for hire?
+          input.form-control#forHire(type='checkbox', ng-model='student.available')
+    .col-xs-10.col-xs-offset-1
+      .form-group Three sentences that sum you up
+        label: h6(for='bio')
+        textarea.form-control#bio(type='textarea', name='bio', ng-model='student.bio')
+      .form-group Photo
+        label: h6(for='photo')
+        input.form-control#photo(type='file', ng-model='student.photo' base-sixty-four-input)
+      .form-group
+        img#photoView(base-sixty-four-image="student.photo")
+  .row
+    .col-xs-10.col-xs-offset-1
+      h4.text-center: i.fa.fa-bicycle &nbsp; HOBBIES, INTERESTS, AND EDUCATION
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        h6 Hobbies/Interests
+        ul
+          li.nobullet(ng-repeat='interest in student.interests track by $index')
+            button.btn.btn-info.btn-xs(ng-click='removeInterest($index)') X
+            span &nbsp; {{interest}}
+          li.nobullet(ng-if='student.interests.length < 1') empty list
+      .form-group
+        input.form-control#interests(name='interest', ng-model='interest', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null", placeholder='Enter Hobby or Interest')
+      .form-group
+        button.form-control.btn.btn-info(ng-click='addInterest(interest)') Add Interest
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        label: h6(for='education') Education
+        textarea.form-control#education(type='textarea', rows='5', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
+  .row
+    .col-xs-10.col-xs-offset-1
+      h4.text-center: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
+    .col-xs-10.col-xs-offset-1
+      h6 Skills
       ul
-        li.nobullet(ng-repeat='location in student.locationPref track by $index')
-          button.btn.btn-danger.btn-xs(ng-click='removePreferredLocation($index)'): i.fa.fa-trash
-          span &nbsp; {{location}}
-        li.nobullet(ng-if='student.locationPref.length < 1') empty list
-    .form-group
-      label: h6(for='preflocation') Add Preferred Location
-      ui-select(ng-model='msa.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
-        ui-select-match(placeholder='Location', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null") {{$select.selected.name}}
-        ui-select-choices(repeat='place in msa | filter: $select.search')
-          div(ng-bind-html='place.name | highlight: $select.search') 
-    .form-group
-      button.form-control.btn.btn-success(ng-click='addPreferredLocation(msa.selected.id)') Add Preferred Location
-  .col-xs-4.col-sm-2
-    .form-group
-      label: h6(for='relocation') Willing to relocate?
-      input.form-control#relocation(type='checkbox', ng-model='student.relocate')
-  .col-xs-4.col-sm-2
-    .form-group
-      label: h6(for='remoteWorking') Willing to work remotely?
-      input.form-control#remoteWorking(type='checkbox', ng-model='student.remote')
-  .col-xs-4.col-sm-2
-    .form-group
-      label: h6(for='forHire') Available for hire?
-      input.form-control#forHire(type='checkbox', ng-model='student.available')
-  .col-xs-12.col-sm-6
-    .form-group Three sentences that sum you up
-      label: h6(for='bio')
-      textarea.form-control#bio(type='textarea', name='bio', ng-model='student.bio')
-    .form-group Photo
-      label: h6(for='photo')
-      input.form-control#photo(type='file', ng-model='student.photo' base-sixty-four-input)
-    .form-group
-      img#photoView(base-sixty-four-image="student.photo")
-.row
-  .col-xs-12
-    h4: i.fa.fa-bicycle &nbsp; HOBBIES, INTERESTS, AND EDUCATION
-  .col-xs-12.col-sm-6
-    .form-group
-      h6 Hobbies/Interests
+        li.nobullet(ng-repeat='skill in student.skills track by $index')
+          button.btn.btn-info.btn-xs(ng-click='removeSkill($index)') X
+          span &nbsp; {{skill}}
+        li.nobullet(ng-if='student.skills.length < 1') empty list
+      h6 Add Skill
+      ui-select(ng-model='skillList.selected', theme='bootstrap', reset-search-input='false', ng-disabled='disabled')
+        ui-select-match(placeholder='Choose a Skill', ng-keyup="$event.keyCode == 13 ? addSkill(devSkill.selected.id) : null") {{$select.selected.name}}
+        ui-select-choices(repeat='skill in skillList | filter: $select.search')
+          div(ng-bind-html='skill.name | highlight: $select.search')
+      .form-group
+        button.form-control.btn.btn-info(ng-click='addSkill(skillList.selected.id)') Add Skill
+    .col-xs-10.col-xs-offset-1
+      h6 Exposure
       ul
-        li.nobullet(ng-repeat='interest in student.interests track by $index')
-          button.btn.btn-danger.btn-xs(ng-click='removeInterest($index)'): i.fa.fa-trash
-          span &nbsp; {{interest}}
-        li.nobullet(ng-if='student.interests.length < 1') empty list
-    .form-group
-      input.form-control#interests(name='interest', ng-model='interest', ng-keyup="$event.keyCode == 13 ? addInterest(interest) : null")
-    .form-group
-      button.form-control.btn.btn-success(ng-click='addInterest(interest)') Add Interest
-  .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='education') Education
-      textarea.form-control#education(type='textarea', rows='6', ng-model='student.education', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-.row
-  .col-xs-12
-    h4: i.fa.fa-suitcase &nbsp;SKILLS AND EXPOSURE
-  .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='skills') Skills
-      textarea.form-control#skills(type='textarea', ng-model='student.skills', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-  .col-xs-12.col-sm-6
-    .form-group
-      label: h6(for='exposure') Exposure
-      textarea.form-control#exposure(type='textarea', ng-model='student.exposure', ng-keyup="$event.keyCode == 13 ? submit(user) : null")
-  .col-xs-12
-    .form-group
-      button.btn-lg.btn-success#createStudent(ng-click='create(student)') Create Developer
+        li.nobullet(ng-repeat='exposure in student.exposure track by $index')
+          button.btn.btn-info.btn-xs(ng-click='removeExposure($index)') X
+          span &nbsp; {{exposure}}
+        li.nobullet(ng-if='student.exposure.length < 1') empty list
+      .form-group
+        input.form-control#exposure(name='exposure', ng-model='exposure', ng-keyup="$event.keyCode == 13 ? addExposure(exposure) : null", placeholder='Enter Exposure')
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        button.form-control.btn.btn-info(ng-click='addExposure(exposure)') Add Exposure
+    .col-xs-10.col-xs-offset-1
+      .form-group
+        button.btn-lg.btn-success#createStudent(ng-click='create(student)', ng-hide='editMode') Create Developer
+        button.btn-lg.btn-success#editStudent(ng-click='save(student)', ng-show='editMode') Save Developer

@@ -1,11 +1,8 @@
-h3(ng-hide='isEdit') NEW USER
-h3(ng-show='isEdit') EDIT USER
-
-
+h3.text-center(ng-hide='isEdit') NEW USER
+h3.text-center(ng-show='isEdit') EDIT USER
 .row
-  .col-xs-12
+  .col-xs-8.col-xs-offset-2
     form(name='userForm', novalidate)
-  .col-xs-12.col-sm-4
       .form-group
         label: h6(for='firstName') First Name
         input.form-control.login#firstName(type='text', name='firstName', ng-model='user.firstName')
@@ -15,7 +12,7 @@ h3(ng-show='isEdit') EDIT USER
       .form-group
         label: h6(for='company') Company
         input.form-control.login#company(type='text', name='company', ng-model='user.company')
-  .col-xs-12.col-sm-4
+  .col-xs-8.col-xs-offset-2
       .form-group
         label: h6(for='email') Email
         input.form-control.login#email(type='email', name='email', ng-model='user.email') 
@@ -28,7 +25,7 @@ h3(ng-show='isEdit') EDIT USER
           option(value='0' selected) Viewer
           option(value='5') Super Viewer
           option(value='10') Admin
-  .col-xs-12.col-sm-4
+  .col-xs-8.col-xs-offset-2
       .form-group
         label(ng-hide='isEdit'): h6(for='password1') Password
         label(ng-show='isEdit'): h6(for='password1') Change Password

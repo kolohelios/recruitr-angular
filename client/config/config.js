@@ -7,9 +7,6 @@ angular.module('recruitr')
 
   $stateProvider
   .state('home', {url: '/', templateUrl: '/views/general/home.html'})
-  .state('about', {url: '/about', templateUrl: '/views/general/about.html'})
-  .state('faq', {url: '/faq', templateUrl: '/views/general/faq.html'})
-  .state('contact', {url: '/contact', templateUrl: '/views/general/contact.html'})
   .state('login', {url: '/login', templateUrl: '/views/users/login.html', controller: 'LoginCtrl'})
   .state('register', {url: '/register', templateUrl: '/views/users/users-new.html', controller: 'UsersNewCtrl'})
   .state('users', {url: '/users', templateUrl: '/views/users/users.html', abstract: true})
