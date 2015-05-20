@@ -1,5 +1,5 @@
 h2#profileTitle.text-center LIST PROFILES
-.container-fluid
+.container-fluid#listProfiles
   .row
     .col-xs-6.col-xs-offset-3
       .form-group
@@ -23,9 +23,9 @@ h2#profileTitle.text-center LIST PROFILES
               h3#listName(ng-click='profileGo($index)') {{student.firstName}} {{student.lastName}}
               img.photo.hidden-xs#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
               a(ui-sref='profiles.edit({studentId: student._id})')
-                h3.space: i.fa.fa-cog.black
+                h3.space: i.fa.fa-cog
               a(ng-click='deleteStudent(student._id)')
-                h3.space: i.fa.fa.fa-times-circle-o.red
+                h3.space: i.fa.fa.fa-times-circle-o
             .col-md-4.col-sm-12
               h4#skills Skills
                 ul
