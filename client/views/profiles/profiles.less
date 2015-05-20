@@ -12,7 +12,7 @@
 }
 #profile-show {
   img {
-    border: 5px @col-gray solid;
+    border: 5px @freeze-mid-blue solid;
     border-radius: 3px;
     margin-top: 25px;
     width: 220px;
@@ -25,51 +25,61 @@
   }
   p:nth-child(odd){
     //background-color: @col-peach;
-    color: @col-gray;
+    color: @freeze-lt-blue;
     margin: 0;
     padding: 3px;
   }
   p:nth-child(even){
     background-color:rgba(59, 179, 210, 0.2);
-    color: @col-gray;
+    color: @freeze-lt-blue-50;
     margin: 0;
     padding:3px;
   }
-h5 {
-  font-family: 'Bree Serif', Times, serif;
-  font-size: 1.5em;
-  color: @col-gray;
-}
-  .controlPanel {
-    background-color: rgba(218, 147, 117, 0.4);
-    padding:10px;
-    border-radius: 3px;
-    margin-top:2px;
-    button {
-      margin:3px;
-    }
-  }
-h5.bio {
-  font-family: @font-style;
-  font-size: 1.4em;
-}
-}
-.right-btn-float {
-  text-align: right;
-}
-.nobullet{
-  list-style-type: none;
-  margin-left: -40px;
 }
 
+@freeze-dk-blue: #244d82;
+@freeze-lt-blue: #c2e2f1;
+@freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
+@freeze-green-blue: #5fe9de;
+@freeze-mid-blue: #486e96;
+@freeze-p-pink: #c7a4c2;
 
 
-h1.showName{
-  font-family: 'Bree Serif', Times, serif;
-  color: @col-gray;
-  font-size: 4em;
-}
-
-h1, h2 , h3, h4, h6 {
-  font-family: 'Bree Serif', Times, serif;
-}
+// h5 {
+//   font-family: 'Bree Serif', Times, serif;
+//   font-size: 1.5em;
+//   color: @col-gray;
+// }
+//   .controlPanel {
+//     background-color: rgba(218, 147, 117, 0.4);
+//     padding:10px;
+//     border-radius: 3px;
+//     margin-top:2px;
+//     button {
+//       margin:3px;
+//     }
+//   }
+// h5.bio {
+//   font-family: @font-style;
+//   font-size: 1.4em;
+// }
+// }
+// .right-btn-float {
+//   text-align: right;
+// }
+// .nobullet{
+//   list-style-type: none;
+//   margin-left: -40px;
+// }
+//
+//
+//
+// h1.showName{
+//   font-family: 'Bree Serif', Times, serif;
+//   color: @col-gray;
+//   font-size: 4em;
+// }
+//
+// h1, h2 , h3, h4, h6 {
+//   font-family: 'Bree Serif', Times, serif;
+// }
