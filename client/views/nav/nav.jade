@@ -16,7 +16,7 @@ nav.navbar.navbar-default(ng-controller='NavCtrl')
         li(ng-if='activeUser.role === 10'): a(ui-sref='users.new') New User
       ul.nav.navbar-nav.navbar-right(ng-show='activeUser')
 
-        li: button.btn.btn-default#logoutButton(ng-click='logout()'): {{activeUser.firstName}} {{activeUser.lastName}}
+        li(ng-click='logout()') Sign Out
       ul.nav.navbar-nav.navbar-right(ng-hide='activeUser')
 
         //- li: a(ui-sref='home'): i.fa.fa.fa-home &nbsp; Home
