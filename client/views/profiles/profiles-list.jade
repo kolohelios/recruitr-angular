@@ -1,51 +1,41 @@
-h3 LIST PROFILES
-.row
-  .col-xs-12.col-sm-2
-    .form-group
-      label(for='skills') Find by skills
-      select.form-control(ng-model='searchSkills' name='skills')
-        option(ng-repeat='skill in skills') {{skill}}
-  .col-xs-12.col-sm-2
-    .form-group
-      label(for='skills') &nbsp;
-      button.form-control.btn.btn-info(name='skills', ng-click='sortBy()') Search
-  //- .col-xs-12.col-sm-2
-  //-   .form-group(ng-if='activeUser.role > 0')
-  //-     label(for='sortName') Find by name
-  //-     select.form-control(ng-model='sortName', name='sortName')
-  //-       option(value='firstName') firstName
-  //-       option(value='lastName') lastName
-  //- .col-xs-12.col-sm-2
-  //-   .form-group(ng-if='activeUser.role > 0')
-  //-     label(for='sortByName') &nbsp;
-  //-     button.form-control.btn.btn-info(name='sortByName', ng-click='sortByName(sortName)') Sort
-.row
-  .col-sm-12
-    .table-responsive
-      table.table.table-striped
-        thead
-          tr
-            th Photo
-            th First Name
-            th(ng-if='activeUser.role > 0') Last Name
-            th Skills
-            th Preferred Locations
-            th(ng-if='activeUser.role===10') Edit
-            th(ng-if='activeUser.role===10') Delete
-        tbody
-          tr(ng-repeat='student in students track by $index')
-            td: img.photo(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
-            td(ng-click='profileGo($index)') {{student.firstName}}
-            td(ng-if='activeUser.role > 0', ng-click='profileGo($index)') {{student.lastName}}
-            td: ul 
-              li(ng-repeat='skill in student.skills') {{skill}}
-            td: ul
-              li(ng-repeat='location in student.locationPref') {{location}}
-            td(ng-if='activeUser.role===10'): button.btn.btn-warning: a(ui-sref='profiles.edit({studentId: student._id})') Edit
-            td(ng-if='activeUser.role===10'): button.btn.btn-danger(ng-click='deleteStudent(student._id)') Delete
-.row
-  .col-xs-1
-    button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev') Prev
-  .col-xs-10
-  .col-xs-1
-    button.btn.btn-info(ng-show='moveForward', ng-click='changePage("next")', ng-model='next') Next
+h3.text-center LIST PROFILES
+.container
+  .row
+    .col-xs-6.col-xs-offset-3
+      .form-group
+        label.center-block(for='skills') Find by skills
+        select.center-block.form-control(ng-model='searchSkills' name='skills')
+          option(ng-repeat='skill in skills') {{skill}}
+      .form-group
+        label(for='skills') &nbsp;
+        button.form-control.btn.btn-info(name='skills', ng-click='sortBy()') Search
+  .row
+    .col-xs-1
+      button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev'): i.fa.fa-chevron-left
+    .col-xs-1.col-xs-offset-10
+      button.btn.btn-info(ng-show='moveForward', ng-click='changePage("next")', ng-model='next'): i.fa.fa-chevron-right
+  .container
+    .row
+      .col-sm-12
+        .table-responsive
+          table.table
+            thead
+              tr
+                th Photo
+                th First Name
+                th(ng-if='activeUser.role > 0') Last Name
+                th Skills
+                th Preferred Locations
+                th(ng-if='activeUser.role===10') Edit
+                th(ng-if='activeUser.role===10') Delete
+            tbody
+              tr(ng-repeat='student in students track by $index')
+                td: img.photo(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
+                td(ng-click='profileGo($index)') {{student.firstName}}
+                td(ng-if='activeUser.role > 0', ng-click='profileGo($index)') {{student.lastName}}
+                td: ul 
+                  li(ng-repeat='skill in student.skills') {{skill}}
+                td: ul
+                  li(ng-repeat='location in student.locationPref') {{location}}
+                td(ng-if='activeUser.role===10'): button.btn.btn-warning: a(ui-sref='profiles.edit({studentId: student._id})') Edit
+                td(ng-if='activeUser.role===10'): button.btn.btn-danger(ng-click='deleteStudent(student._id)') Delete
