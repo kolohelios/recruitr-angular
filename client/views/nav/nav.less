@@ -8,7 +8,8 @@
 .navbar.navbar-default{
   position: static;
   height: 75px;
-  border-bottom: @freeze-green-blue 5px solid;
+  // border-bottom: @freeze-green-blue 5px solid;
+  border-bottom: none;
   @font-style: 'Open Sans', helvetica, sans-serif;
   box-shadow: 5px 0 5px @freeze-dk-blue;
   background-color: @freeze-lt-blue-50;
@@ -38,7 +39,7 @@
   }
 
   a.navbar-brand{
-    background-color: @freeze-dk-blue;
+    background-color: transparent;
     //font-size: 3.2em;
     color: white;
     margin:0 25px;
@@ -52,4 +53,18 @@
   // }
 
   // }
+}
+// @media screen and (min-width: 769px){
+//   .navbar-collapse {
+//     // background-color: white;
+//     visibility: none;
+//   }
+// @media screen and (max-width: 768px){
+  .in {
+    background-color: white !important;
+    visibility: v;
+    z-index: 400;
+    li {
+      background-color: @freeze-p-pink;
+    }
 }
