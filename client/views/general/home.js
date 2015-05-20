@@ -3,7 +3,8 @@
 angular.module('recruitr')
 .controller('HomeCtrl', function(){
 
-  generatePassword();
+  var tempPassword = generatePassword();
+  console.log(tempPassword);
 
   function generatePassword(){
     var password = [];

@@ -35,7 +35,7 @@ angular.module('recruitr')
   $scope.deleteStudent = function(student){
     Profile.destroy(student)
     .then(function(response){
-      $window._.remove($scope.searchResults, function(profile){
+      $window._.remove($scope.students, function(profile){
         return profile._id === response.data._id;
       });
     });
