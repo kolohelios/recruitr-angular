@@ -57,22 +57,91 @@ h5.bio {
   margin-left: -40px;
   margin: 0 3px;
 }
+//
+// ***************
+// PROFILES CARDS
+//*****************
+//
+@media screen and (max-width: 600px){
 
-#cardTemplate{
-  margin: 1%;
-  margin-left: 5%;
-  padding: 2%;
-  border: 1px black solid;
-  min-height: 350px;
-  height: auto;
-  background: white;
-}
+  img.photo {
+    visibility: hidden;
+    display: none;
+  }
+
+  #cardTemplate{
+    margin: 1%;
+    margin-left: 5%;
+    padding: 2%;
+    border: 1px black solid;
+    min-height: 350px;
+    height: auto;
+    background-color: white;
+    color: @freeze-mid-blue;
+    position: relative;
+    #skills {
+      position: absolute;
+    }
+    ul {
+      background-color: @freeze-lt-blue-50;
+      padding: 10px;
+    }li {
+      list-style: none;
+      }
+  }
+
+} // end of small size card
+
+@media (min-width: 601px) and (max-width: 900px){
+
+  #cardTemplate{
+    margin: 1%;
+    margin-left: 5%;
+    padding: 2%;
+    border: 1px black solid;
+    min-height: 350px;
+    height: auto;
+    background-color: white;
+    color: @freeze-mid-blue;
+
+    ul {
+      background-color: @freeze-lt-blue-50;
+      padding: 10px;
+    }li {
+      list-style: none;
+      }
+  }
+
+} // end of mid size card
+
+@media screen and (min-width: 901px){
+
+  #cardTemplate{
+    margin: 1%;
+    margin-left: 5%;
+    padding: 2%;
+    border: 1px black solid;
+    min-height: 350px;
+    height: auto;
+    background-color: white;
+    color: @freeze-mid-blue;
+
+    ul {
+      background-color: @freeze-lt-blue-50;
+      padding: 10px;
+    }li {
+      list-style: none;
+      }
+  }
+
+} // end of large size card
+
 #cardTemplate:hover{
-  box-shadow: 0px 0px 20px black;
+  box-shadow: 0px 0px 20px @freeze-dk-blue;
 }
 #skills{
   word-wrap: break-word;
-  padding-top: 15%;
+  padding-top: 15px;
 }
 #preferedLocations{
   padding-top: 15%;
@@ -110,4 +179,8 @@ h5.bio {
 
 #list{
   font-size: 3em;
+}
+
+#listProfiles {
+
 }

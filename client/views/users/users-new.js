@@ -35,7 +35,7 @@ angular.module('recruitr')
   };
   $scope.create = function(obj){
     if($scope.user.password1 === $scope.user.password2){
-      obj.password = $scope.user.password1;
+      obj.password = obj.password || $scope.user.password1;
       delete obj.password1;
       delete obj.password2;
       delete obj.role;

@@ -29,13 +29,13 @@
       h3: a(href='{{student.contact.website}}') {{student.contact.website}}
     .col-md-3.col-sm-12
       h3 Skills
-      li(ng-repeat="skill in student.skills") {{skill}}
+      h4(ng-repeat="skill in student.skills") {{skill}}
     .col-md-3.col-sm-12
       h3 Exposure
-      li(ng-repeat="exposure in student.exposure") {{exposure}}
+      h4(ng-repeat="exposure in student.exposure") {{exposure}}
     .col-md-3.col-sm-12
       h3 Interests
-      li(ng-repeat="interest in student.interests") {{interest}}
+      h4(ng-repeat="interest in student.interests") {{interest}}
   .row
     .col-sm-10.col-sm-offset-1
       h3 About Me
