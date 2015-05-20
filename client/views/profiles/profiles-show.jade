@@ -19,7 +19,7 @@
           span {{exposure}}
           span(ng-if='!($last)') |
     .hidden-xs.col-sm-2.col-md-4.col-md-pull-6
-      img(base-sixty-four-image='student.photo')
+      img.showPhoto(base-sixty-four-image='student.photo')
     .col-xs-12.col-md-2
       .controlPanel(ng-if='activeUser.role===10')
         h5 Control Panel
