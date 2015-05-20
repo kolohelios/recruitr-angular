@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h3 LIST PROFILES
 .row
   .col-xs-12.col-sm-2
@@ -39,3 +40,41 @@ h3 LIST PROFILES
   .col-xs-10
   .col-xs-1
     button.btn.btn-info(ng-show='moveForward', ng-click='changePage("next")', ng-model='next') Next
+=======
+h2#profileTitle.text-center LIST PROFILES
+.container-fluid
+  .row
+    .col-xs-6.col-xs-offset-3
+      .form-group
+        label.center-block.text-center(for='skills'): h4 Find by skills
+        select.center-block.form-control(ng-model='searchSkills' name='skills')
+          option(ng-repeat='skill in skills') {{skill}}
+      .form-group
+        label(for='skills') &nbsp;
+        button.form-control.btn.btn-info#profileSearch(name='skills', ng-click='sortBy()') Search
+  .row
+    .col-xs-1
+      button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev'): i.fa.fa-chevron-left
+    .col-xs-1.col-xs-offset-10
+      button.btn.btn-info(ng-show='moveForward', ng-click='changePage("next")', ng-model='next'): i.fa.fa-chevron-right
+  .container-fluid
+    .row
+      .col-xs-12
+        .container-fluid
+          .col-md-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index')
+            .col-md-3.col-sm-12
+              h3#listName(ng-click='profileGo($index)') {{student.firstName}} {{student.lastName}}
+              img.photo.hidden-xs#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
+              a(ui-sref='profiles.edit({studentId: student._id})')
+                h3.space: i.fa.fa-cog.black
+              a(ng-click='deleteStudent(student._id)')
+                h3.space: i.fa.fa.fa-times-circle-o.red
+            .col-md-4.col-sm-12
+              h4#skills Skills
+                ul
+                  li: h5(ng-repeat='skill in student.skills') {{skill}}
+            .col-md-5.col-sm-12
+              h4#preferedLocations Preferred Locations
+                ul
+                  li: h5(ng-repeat='location in student.locationPref') {{location}}
+>>>>>>> b673bf0f576c2c54bd71c090d02545d1d45da2a3
