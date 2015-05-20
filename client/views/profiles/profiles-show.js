@@ -10,6 +10,7 @@ angular.module('recruitr')
   function initialize(){
     Profile.findStudent($state.params.studentId)
     .then(function(response){
+      console.log(response);
       $scope.student = response.data.profile;
       next = response.data.next;
       prev = response.data.prev;
