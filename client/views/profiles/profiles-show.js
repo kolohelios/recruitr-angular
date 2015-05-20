@@ -2,31 +2,32 @@
 
 angular.module('recruitr')
 .controller('ProfilesShowCtrl', function($scope, $rootScope, Profile, $state){
-  // var sId = 'a00000000000000000000001';
-  $scope.studentIndex = $state.params.studentId * 1;
-  $scope.students = $rootScope.students;
-  console.log('length of students array is ', $rootScope.students.length);
-  function initialize(){
-    $scope.student = $rootScope.students[$scope.studentIndex];
-  }
   initialize();
+  $scope.isNext = true;
+  $scope.isPrev = false;
+  var next;
+  var prev;
+  function initialize(){
+    Profile.findStudent($state.params.studentId)
+    .then(function(response){
+      $scope.student = response.data.profile;
+      next = response.data.next;
+      prev = response.data.prev;
+      next ? $scope.isNext = true : $scope.isNext = false;
+      prev ? $scope.isPrev = true : $scope.isPrev = false;
+    });
+  }
 
   $scope.prev = function(){
-    var prevIndex = $scope.studentIndex - 1;
-    if(prevIndex >= 0){
-      $scope.studentIndex -= 1;
-      $scope.student = $scope.students[$scope.studentIndex];
-      console.log('current index', $scope.studentIndex);
-    }
+    if(!prev){ return; }
+    $state.go('profiles.show', {studentId: prev});
+
   };
 
   $scope.next = function(){
-    var nextIndex = $scope.studentIndex + 1;
-    if(nextIndex < $scope.students.length){
-      $scope.studentIndex += 1;
-      $scope.student = $scope.students[$scope.studentIndex];
-      console.log('current index', $scope.studentIndex, ' of ', $scope.students.length);
-    }
+    if(!next){ return; }
+    $state.go('profiles.show', {studentId: next});
+
   };
 
   $scope.editStudent = function(student){

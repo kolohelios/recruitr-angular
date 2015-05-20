@@ -11,8 +11,7 @@ angular.module('recruitr')
   function showList(page){
     Profile.find(page)
     .then(function(response){
-      console.log(response);
-      $rootScope.students = response.data.profiles;
+      $scope.students = response.data.profiles;
       $scope.moveForward = $scope.students.length >= 10 ? true : false;
       $scope.moveBack = $scope.page > 1 ? true : false;
     });
@@ -48,8 +47,7 @@ angular.module('recruitr')
     });
   };
 
-  $scope.profileGo = function(index){
-    console.log('inside profile list js - index', index);
-    $state.go('profiles.show', {studentId: index});
+  $scope.profileGo = function(student){
+    $state.go('profiles.show', {studentId: student._id});
   };
 });
