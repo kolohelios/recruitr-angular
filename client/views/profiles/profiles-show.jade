@@ -1,59 +1,49 @@
 //#profile-padding
-.container#profile-show
-  .row
+.container-fluid#profile-show
+  .row#profileNextBar
     .col-xs-6
-      p(ng-show='isPrev'): a(ng-click='prev()'): i.fa.fa-caret-left &nbsp; PREVIOUS
+      h4(ng-show='isPrev'): a(ng-click='prev()').black.cursor: i.fa.fa-caret-left.black &nbsp; PREVIOUS
     .col-xs-6
-      p.right-btn-float(ng-show='isNext'): a(ng-click='next()') NEXT &nbsp;
-        span: i.fa.fa-caret-right
-  .row
-    .col-xs-12.col-sm-8.col-md-6.col-md-push-4
-      h1.showName {{student.firstName}} {{student.lastName}}
-      .col-xs-12.col-sm-6
-        h5 Skills
-        ul
-          li(ng-repeat="skill in student.skills") {{skill}}
-      .col-xs-12.col-sm-6
-        h5 Exposure
-        span(ng-repeat="exposure in student.exposure")
-          span {{exposure}}
-          span(ng-if='!($last)') |
-    .hidden-xs.col-sm-2.col-md-4.col-md-pull-6
-      img(base-sixty-four-image='student.photo')
-    .col-xs-12.col-md-2
-      .controlPanel(ng-if='activeUser.role===10')
-        h5 Control Panel
-        button.btn.btn-warning(ng-click='deleteStudent(student._id)') Delete
-        button.btn.btn-info(ng-click='editStudent(student._id)') Edit
-  .row
-    .col-xs-12.col-md-5.col-md-push-4
-      p &nbsp;
-      h5.bio {{student.bio}}
-    .col-xs-12.col-md-4.col-md-pull-5
-      h5 Location Pereferences
-      p Location: {{student.location}}
+      h4.right-btn-float.black(ng-show='isNext'): a(ng-click='next()').black.cursor NEXT &nbsp;
+        span: i.fa.fa-caret-right.black
+  .row#profileBody
+    .col-md-3.col-sm-12.tallVH
+      img#profilePhoto(base-sixty-four-image='student.photo')
+      h1#showTitle {{student.firstName}} {{student.lastName}}
+      h3 Contact Information
+      h4 Location
+      h5 {{student.location}}
       p(ng-show="{{student.relocate}}"): i.fa.fa-check &nbsp; Willing to relocate
       p(ng-show="{{student.remote}}"): i.fa.fa-check &nbsp; Willing to work remotely
-      h5 Open to opportunities in:
-      p(ng-repeat="location in student.locationPref"): {{location}}
-    .col-xs-12.col-md-3
-      h5 Interests
-      p(ng-repeat="interest in student.interests") {{interest}}
-  .row
-    .col-xs-12.col-md-8.col-md-push-4
-      h5 Education
-      p(ng-repeat="edu in student.education") {{edu}}
-    .col-xs-12.col-md-4.col-md-pull-8
-      h5 Contact Information
-      p
-        i.fa.fa-envelope: a(mailto="{{contat.contact.email}}") &nbsp; email
-      p
-        i.fa.fa-phone: a(href="tel:{{student.contact.phone}}") &nbsp; {{student.contact.phone}}
-      p
-        i.fa.fa-home: a(href='{{student.contact.website}}') &nbsp; {{student.contact.website}}
-      p
-        i.fa.fa-linkedin: a(href="{{student.social.linkedin}}") &nbsp; LinkedIn
-      p
-        i.fa.fa-github: a(href="{{student.social.github}}") &nbsp; Github
-      p
-        i.fa.fa-stack-overflow: a(href="{{student.social.stackoverflow}}") &nbsp; LinkedIn
+      a(mailto="{{contat.contact.email}}")
+        h3.showSpace.black: i.fa.fa-envelope
+      a(href="{{student.social.linkedin}}")
+        h3.showSpace.black: i.fa.fa-linkedin
+      a(href="{{student.social.github}}")
+        h3.showSpace.black: i.fa.fa-github
+      a(href="{{student.social.stackoverflow}}")
+        h3.showSpace.black: i.fa.fa-stack-overflow
+      h3: a(href="tel:{{student.contact.phone}}") {{student.contact.phone}}
+      h3: a(href='{{student.contact.website}}') {{student.contact.website}}
+    .col-sm-8#profileAbout
+      h3.underline About Me
+      h4 {{student.bio}}
+    .col-md-3.col-sm-12.boxBackDrop
+      h3.underline Skills
+      h4(ng-repeat="skill in student.skills") {{skill}}
+    .col-md-3.col-sm-12.boxBackDrop
+      h3.underline Exposure
+      h4(ng-repeat="exposure in student.exposure") {{exposure}}
+    .col-md-2.col-sm-12.boxBackDrop
+      h3.underline Interests
+      h4(ng-repeat="interest in student.interests") {{interest}}
+    .row
+      .col-sm-8#profileEdu
+        h3.underline Education
+        h4(ng-repeat="edu in student.education") {{edu}}
+    .col-xs-1
+      .controlPanel(ng-if='activeUser.role===10')
+        a(ng-click='deleteStudent(student._id)')
+          h3.space: i.fa.fa.fa-times-circle-o.red
+        a(ui-sref='profiles.edit({studentId: student._id})')
+          h3.space: i.fa.fa-cog.black
