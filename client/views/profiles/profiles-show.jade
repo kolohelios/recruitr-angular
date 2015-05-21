@@ -7,7 +7,7 @@
       h4.right-btn-float.black(ng-show='isNext'): a(ng-click='next()').black.cursor.blueBG NEXT &nbsp;
         span: i.fa.fa-caret-right.black
   .row#profileBody
-    .col-md-2.col-sm-12.tallVH
+    .col-md-2.col-sm-11.tallVH.profileTrans
       img#profilePhoto(base-sixty-four-image='student.photo')
       h1#showTitle {{student.firstName}} {{student.lastName}}
       h3 Contact Information
@@ -26,20 +26,20 @@
           h3.showSpace.black: i.fa.fa-github
         a(href="{{student.social.stackoverflow}}")
           h3.showSpace.black: i.fa.fa-stack-overflow
-    .col-sm-8#profileAbout
+    .col-md-7.col-sm-11.profileTrans#profileAbout
       h3.underline About Me
       h4(ng-class='{"blurText": activeUser.role < 5}') {{student.bio}}
-    .col-md-2.col-sm-12.boxBackDrop
+    .col-md-2.col-sm-11.boxBackDrop.profileTrans
       h3.underline Skills
       h4(ng-repeat="skill in student.skills track by $index") {{skill}}
-    .col-md-2.col-sm-12.boxBackDrop
+    .col-md-2.col-sm-11.boxBackDrop.profileTrans
       h3.underline Exposure
       h4(ng-repeat="exposure in student.exposure track by $index") {{exposure}}
-    .col-md-2.col-sm-12.boxBackDrop
+    .col-md-2.col-sm-11.boxBackDrop.profileTrans
       h3.underline Interests
       h4(ng-repeat="interest in student.interests track by $index") {{interest}}
     .row
-      .col-sm-8#profileEdu
+      .col-md-7.col-sm-11.profileTrans#profileEdu
         h3.underline Education
         h4#profileEduText(ng-class='{"blurText": activeUser.role < 5}') {{student.education}}
         button.form-control.btn.btn-warning#profileSearch(name='requestAuth', ng-click='requestAuth()' ng-if='activeUser.role === 0') To Request Full Access to These Profiles, Click Here!
