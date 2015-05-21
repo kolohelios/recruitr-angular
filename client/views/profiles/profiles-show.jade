@@ -17,7 +17,7 @@
       p(ng-show="{{student.remote}}"): i.fa.fa-check &nbsp; Willing to work remotely
       h3: a(href='{{student.contact.website}}') {{student.contact.website}}
       h3: a(href="tel:{{student.contact.phone}}") {{student.contact.phone}}
-      div
+      div(ng-if='activeUser.role===5 || activeUser.role===10')
         a(mailto="{{contat.contact.email}}")
           h3.showSpace.black: i.fa.fa-envelope
         a(href="{{student.social.linkedin}}")
@@ -41,7 +41,8 @@
     .row
       .col-sm-8#profileEdu
         h3.underline Education
-        h4(ng-class='{"blurText": activeUser.role < 5}') {{student.education}}
+        h4#profileEduText(ng-class='{"blurText": activeUser.role < 5}') {{student.education}}
+        button.form-control.btn.btn-warning#profileSearch(name='requestAuth', ng-click='requestAuth()' ng-if='activeUser.role === 0') To Request Full Access to These Profiles, Click Here!
     .col-xs-1
       .controlPanel(ng-if='activeUser.role===10')
         a(ng-click='deleteStudent(student._id)')
