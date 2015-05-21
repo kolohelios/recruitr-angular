@@ -9,7 +9,7 @@ h2#profileTitle.text-center LIST PROFILES
       .form-group
         label(for='skills') &nbsp;
         button.form-control.btn.btn-info#profileSearch(name='skills', ng-click='sortBy()') Search
-        button.form-control.btn.btn-warning#profileSearch(name='requestAuth', ng-click='requestAuth()' ng-if='activeUser.role === 0') To Request Full Access to These Profiles, Click Here!
+        button.form-control.btn.btn-warning#profileSearch(name='requestAuth', ng-click='requestAuth()' ng-if='activeUser.role === 0 || $rootScopeactiveUser === null') To Request Full Access to These Profiles, Click Here!
   .row
     .col-xs-1
       button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev'): i.fa.fa-chevron-left
