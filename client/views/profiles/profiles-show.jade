@@ -2,45 +2,46 @@
 .container-fluid#profile-show
   .row#profileNextBar
     .col-xs-6
-      h4(ng-show='isPrev'): a(ng-click='prev()').black.cursor: i.fa.fa-caret-left.black &nbsp; PREVIOUS
+      h4(ng-show='isPrev'): a(ng-click='prev()').black.cursor: i.fa.fa-caret-left.black.blueBG &nbsp; PREVIOUS
     .col-xs-6
-      h4.right-btn-float.black(ng-show='isNext'): a(ng-click='next()').black.cursor NEXT &nbsp;
+      h4.right-btn-float.black(ng-show='isNext'): a(ng-click='next()').black.cursor.blueBG NEXT &nbsp;
         span: i.fa.fa-caret-right.black
   .row#profileBody
-    .col-md-3.col-sm-12.tallVH
+    .col-md-2.col-sm-12.tallVH
       img#profilePhoto(base-sixty-four-image='student.photo')
       h1#showTitle {{student.firstName}} {{student.lastName}}
       h3 Contact Information
       h4 Location
-      h5 {{student.location}}
+      h5(ng-class='{"blurText": activeUser.role < 5}') {{student.location}}
       p(ng-show="{{student.relocate}}"): i.fa.fa-check &nbsp; Willing to relocate
       p(ng-show="{{student.remote}}"): i.fa.fa-check &nbsp; Willing to work remotely
-      a(mailto="{{contat.contact.email}}")
-        h3.showSpace.black: i.fa.fa-envelope
-      a(href="{{student.social.linkedin}}")
-        h3.showSpace.black: i.fa.fa-linkedin
-      a(href="{{student.social.github}}")
-        h3.showSpace.black: i.fa.fa-github
-      a(href="{{student.social.stackoverflow}}")
-        h3.showSpace.black: i.fa.fa-stack-overflow
-      h3: a(href="tel:{{student.contact.phone}}") {{student.contact.phone}}
       h3: a(href='{{student.contact.website}}') {{student.contact.website}}
+      h3: a(href="tel:{{student.contact.phone}}") {{student.contact.phone}}
+      div
+        a(mailto="{{contat.contact.email}}")
+          h3.showSpace.black: i.fa.fa-envelope
+        a(href="{{student.social.linkedin}}")
+          h3.showSpace.black: i.fa.fa-linkedin
+        a(href="{{student.social.github}}")
+          h3.showSpace.black: i.fa.fa-github
+        a(href="{{student.social.stackoverflow}}")
+          h3.showSpace.black: i.fa.fa-stack-overflow
     .col-sm-8#profileAbout
       h3.underline About Me
-      h4 {{student.bio}}
-    .col-md-3.col-sm-12.boxBackDrop
+      h4(ng-class='{"blurText": activeUser.role < 5}') {{student.bio}}
+    .col-md-2.col-sm-12.boxBackDrop
       h3.underline Skills
-      h4(ng-repeat="skill in student.skills") {{skill}}
-    .col-md-3.col-sm-12.boxBackDrop
+      h4(ng-repeat="skill in student.skills track by $index") {{skill}}
+    .col-md-2.col-sm-12.boxBackDrop
       h3.underline Exposure
-      h4(ng-repeat="exposure in student.exposure") {{exposure}}
+      h4(ng-repeat="exposure in student.exposure track by $index") {{exposure}}
     .col-md-2.col-sm-12.boxBackDrop
       h3.underline Interests
-      h4(ng-repeat="interest in student.interests") {{interest}}
+      h4(ng-repeat="interest in student.interests track by $index") {{interest}}
     .row
       .col-sm-8#profileEdu
         h3.underline Education
-        h4(ng-repeat="edu in student.education") {{edu}}
+        h4(ng-class='{"blurText": activeUser.role < 5}') {{student.education}}
     .col-xs-1
       .controlPanel(ng-if='activeUser.role===10')
         a(ng-click='deleteStudent(student._id)')

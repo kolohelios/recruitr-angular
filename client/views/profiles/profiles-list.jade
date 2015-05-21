@@ -19,10 +19,9 @@ h2#profileTitle.text-center LIST PROFILES
       .col-xs-12
         .container-fluid
           .col-lg-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index' ng-click='profileGo(student)')
-            .col-xs-12
-              h3#listName {{student.firstName}} {{student.lastName}}
-             .col-xs-12.col-lg-5
+            .col-xs-12.col-lg-5
               img.photo#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
+              h3#listName {{student.firstName}} {{student.lastName}}
               #cogHolder(ng-if='activeUser.role === 10')
                 a(ui-sref='profiles.edit({studentId: student._id})')
                   h3.space: i.fa.fa-cog
@@ -36,7 +35,3 @@ h2#profileTitle.text-center LIST PROFILES
               h4 Exposure
               ul
                 li: h5(ng-repeat='exposure in student.exposure') {{exposure}}
-           .col-sm-12#preferedLocations
-              h4 Location
-              ul
-                li: h5(ng-repeat='location in student.locationPref') {{location}}
