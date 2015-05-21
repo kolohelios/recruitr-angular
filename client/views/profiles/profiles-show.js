@@ -2,12 +2,12 @@
 
 angular.module('recruitr')
 .controller('ProfilesShowCtrl', function($scope, $rootScope, Profile, $state){
-  initialize();
+  // initialize();
   $scope.isNext = true;
   $scope.isPrev = false;
   var next;
   var prev;
-  function initialize(){
+  // function initialize(){
     Profile.findStudent($state.params.studentId)
     .then(function(response){
       console.log(response);
@@ -17,7 +17,7 @@ angular.module('recruitr')
       next ? $scope.isNext = true : $scope.isNext = false;
       prev ? $scope.isPrev = true : $scope.isPrev = false;
     });
-  }
+  // }
 
   $scope.prev = function(){
     if(!prev){ return; }
