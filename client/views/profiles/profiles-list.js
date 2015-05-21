@@ -30,7 +30,7 @@ angular.module('recruitr')
     showList($scope.page);
   };
   $scope.editStudent = function(student){
-    $state.go('profiles.edit', {studentId: student});
+    $state.go('profiles.edit', {studentId: student._id});
   };
   $scope.deleteStudent = function(student){
     Profile.destroy(student)
