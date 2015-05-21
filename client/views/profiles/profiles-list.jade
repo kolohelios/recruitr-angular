@@ -18,25 +18,25 @@ h2#profileTitle.text-center LIST PROFILES
     .row
       .col-xs-12
         .container-fluid
-          .col-md-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index' ng-click='profileGo(student)')
+          .col-lg-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index' ng-click='profileGo(student)')
             .col-xs-12
               h3#listName {{student.firstName}} {{student.lastName}}
-            .col-md-3.col-sm-12
+             .col-xs-12.col-lg-5
               img.photo#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
               #cogHolder(ng-if='activeUser.role === 10')
                 a(ui-sref='profiles.edit({studentId: student._id})')
                   h3.space: i.fa.fa-cog
                 a(ng-click='deleteStudent(student._id)')
                   h3.space: i.fa.fa.fa-times-circle-o
-            .col-md-4.col-sm-12#skills
+            .col-lg-3.col-sm-12#skills
               h4 Skills
               ul
                 li: h5(ng-repeat='skill in student.skills') {{skill}}
-            .col-md-5.col-sm-12#exposures
+            .col-sm-12#exposures
               h4 Exposure
               ul
                 li: h5(ng-repeat='exposure in student.exposure') {{exposure}}
-            .col-md-5.col-sm-12#preferedLocations
+           .col-sm-12#preferedLocations
               h4 Location
               ul
                 li: h5(ng-repeat='location in student.locationPref') {{location}}
