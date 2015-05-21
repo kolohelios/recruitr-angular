@@ -55,7 +55,7 @@ angular.module('recruitr')
 
   $scope.addExposure = function(exposure){
     $scope.student.exposure.push(exposure);
-    $scope.skill = '';
+    $scope.exposure = '';
   };
 
   $scope.addToPortfolio = function(exposure){
