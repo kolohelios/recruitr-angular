@@ -33,6 +33,6 @@ h3.text-center(ng-show='isEdit') EDIT USER
       // label: h6(for='password2') Password Validation
       input.form-control.login#password2(type='password', name='password2', ng-model='user.password2', placeholder="confirm password", ng-keyup="$event.keyCode == 13 ? submit(user) : null")
     .form-group(ng-hide='isEdit')
-      button.btn.btn-success.login#createUser(ng-click='create(user)') Create New User
+      button.btn.btn-info.login#createUser(ng-click='create(user)') Create New User
     .form-group(ng-show='isEdit')
-      button.btn.btn-success.login#createUser(ng-click='edit(user)') Save Edit
+      button.btn.btn-info.login#createUser(ng-click='edit(user)') Save Edit
