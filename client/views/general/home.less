@@ -1,12 +1,12 @@
-@freeze-dk-blue: #244d82;
-@freeze-lt-blue: #c2e2f1;
-@freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
-@freeze-green-blue: #5fe9de;
-@freeze-mid-blue: #486e96;
-@freeze-p-pink: #c7a4c2;
+// @freeze-dk-blue: #244d82;
+// @freeze-lt-blue: #c2e2f1;
+// @freeze-lt-blue-50: rgba(198, 231, 245, 0.5);
+// @freeze-green-blue: #5fe9de;
+// @freeze-mid-blue: #486e96;
+// @freeze-p-pink: #c7a4c2;
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 459px){
   #home {
     width: 90%;
     position: relative;
@@ -19,7 +19,48 @@
     border-radius: 25px !important;
     border: 0;
     width: 35%;
-    height:75px;
+    height:60px;
+    background: @freeze-green-blue;
+    border-top-right-radius: 35px !important;
+    border-bottom-right-radius: 35px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin-bottom: 1px;
+    border: @freeze-mid-blue 3px solid;
+    position: absolute;
+    left: 60%;
+    font-size: 19px;
+    color: @freeze-dk-blue;
+  }
+  input[type=text] {
+    width: 65%;
+    height: 60px;
+    shadow: none;
+    border: @freeze-mid-blue 3px solid;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    position: absolute;
+    left:0;
+    font-size: 25px;
+    color: @freeze-dk-blue;
+    padding-left:15px;
+  }
+  }
+}
+@media (min-width: 459px) and (max-width: 768px){
+  #home {
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+  h2 {
+    text-align: center;
+    font-size: 32px;
+  }
+  input[type=submit] {
+    border-radius: 25px !important;
+    border: 0;
+    width: 35%;
+    height:60px;
     background: @freeze-green-blue;
     border-top-right-radius: 35px !important;
     border-bottom-right-radius: 35px !important;
@@ -30,11 +71,11 @@
     position: absolute;
     left: 60%;
     font-size: 22px;
-    color: #1e1e1e;
+    color: @freeze-dk-blue;
   }
   input[type=text] {
     width: 65%;
-    height: 75px;
+    height: 60px;
     shadow: none;
     border: @freeze-mid-blue 3px solid;
     border-top-left-radius: 35px;
@@ -64,8 +105,7 @@
     border-radius: 25px !important;
     border: 0;
     width: 150px;
-    height:75px;
-    background: @freeze-green-blue;
+    height:60px;
     border-top-right-radius: 35px !important;
     border-bottom-right-radius: 35px !important;
     border-top-left-radius: 0 !important;
@@ -79,7 +119,7 @@
   }
   input[type=text] {
     width: 548px;
-    height: 75px;
+    height: 60px;
     shadow: none;
     border: @freeze-mid-blue 3px solid;
     border-top-left-radius: 35px;

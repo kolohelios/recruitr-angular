@@ -9,6 +9,7 @@ h2#profileTitle.text-center LIST PROFILES
       .form-group
         label(for='skills') &nbsp;
         button.form-control.btn.btn-info#profileSearch(name='skills', ng-click='sortBy()') Search
+        button.form-control.btn.btn-warning#profileSearch(name='requestAuth', ng-click='requestAuth()' ng-if='activeUser.role === 0 || $rootScopeactiveUser === null') To Request Full Access to These Profiles, Click Here!
   .row
     .col-xs-1
       button.btn.btn-info(ng-show='moveBack', ng-click='changePage("prev")', ng-model='prev'): i.fa.fa-chevron-left
@@ -18,19 +19,20 @@ h2#profileTitle.text-center LIST PROFILES
     .row
       .col-xs-12
         .container-fluid
-          .col-md-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index')
-            .col-md-3.col-sm-12
-              h3#listName(ng-click='profileGo($index)') {{student.firstName}} {{student.lastName}}
-              img.photo.hidden-xs#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
-              a(ui-sref='profiles.edit({studentId: student._id})')
-                h3.space: i.fa.fa-cog
-              a(ng-click='deleteStudent(student._id)')
-                h3.space: i.fa.fa.fa-times-circle-o
-            .col-md-4.col-sm-12
-              h4#skills Skills
-                ul
-                  li: h5(ng-repeat='skill in student.skills') {{skill}}
-            .col-md-5.col-sm-12
-              h4#preferedLocations Preferred Locations
-                ul
-                  li: h5(ng-repeat='location in student.locationPref') {{location}}
+          .col-lg-5.col-sm-10#cardTemplate(ng-repeat='student in students track by $index' ng-click='profileGo(student)')
+            .col-xs-12.col-lg-5
+              img.photo#icons(base-sixty-four-image='student.photo', ng-click='profileGo($index)')
+              h3#listName {{student.firstName}} {{student.lastName}}
+              #cogHolder(ng-if='activeUser.role === 10')
+                a(ui-sref='profiles.edit({studentId: student._id})')
+                  h3.space: i.fa.fa-cog
+                a(ng-click='deleteStudent(student._id)')
+                  h3.space: i.fa.fa.fa-times-circle-o
+            .col-lg-3.col-sm-12#skills
+              h4 Skills
+              ul
+                li: h5(ng-repeat='skill in student.skills') {{skill}}
+            .col-sm-12#exposures
+              h4 Exposure
+              ul
+                li: h5(ng-repeat='exposure in student.exposure') {{exposure}}

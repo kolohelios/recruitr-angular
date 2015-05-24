@@ -10,7 +10,7 @@ nav.navbar.navbar-default(ng-controller='NavCtrl')
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-left
 
-        li(ng-if='activeUser.role > -1'): a(ui-sref='profiles.list') Profiles
+        li: a(ui-sref='profiles.list') Profiles
         li(ng-if='activeUser.role === 10'): a(ui-sref='profiles.new') New Profile
         li(ng-if='activeUser.role === 10'): a(ui-sref='users.list') Users
         li(ng-if='activeUser.role === 10'): a(ui-sref='users.new') New User

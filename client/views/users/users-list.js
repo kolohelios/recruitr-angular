@@ -26,7 +26,6 @@ angular.module('recruitr')
   };
   User.find()
   .then(function(response){
-    console.log(response);
     $scope.users = response.data;
     $scope.users = $scope.users.map(function(user){
       var roleName;
@@ -48,14 +47,12 @@ angular.module('recruitr')
     }
   });
   $scope.editUser = function(user){
-    console.log(user);
     // $state.go('houses.edit', {houseId: $state.params.houseId})
     $state.go('users.edit', {userId: user._id});
   };
   $scope.deleteUser = function(user){
     User.deleteUser(user)
     .then(function(response){
-      console.log(response);
       $window._.remove($scope.users, function(){
         return user._id === response.data._id;
       });

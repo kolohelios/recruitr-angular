@@ -16,6 +16,7 @@ angular.module('recruitr')
   $scope.student.locationPref = [];
   $scope.student.interests = [];
   $scope.student.skills = [];
+  $scope.student.portfolio = [];
   $scope.student.exposure = [];
   if($state.params.studentId){
     Profile.findStudent($state.params.studentId)
@@ -54,7 +55,12 @@ angular.module('recruitr')
 
   $scope.addExposure = function(exposure){
     $scope.student.exposure.push(exposure);
-    $scope.skill = '';
+    $scope.exposure = '';
+  };
+
+  $scope.addToPortfolio = function(exposure){
+    $scope.student.portfolio.push(exposure);
+    $scope.portfolio = {};
   };
 
   $scope.removeExposure = function(removeIndex){
